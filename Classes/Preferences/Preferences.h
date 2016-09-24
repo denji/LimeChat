@@ -48,6 +48,7 @@ typedef enum {
 + (BOOL)disconnectOnDoubleclick;
 + (BOOL)joinOnDoubleclick;
 + (BOOL)leaveOnDoubleclick;
++ (BOOL)showEffects;
 + (BOOL)logTranscript;
 + (MainWindowLayoutType)mainWindowLayout;
 + (BOOL)openBrowserInBackground;

@@ -136,6 +136,12 @@ static NSMutableArray *excludeWords;
 	return [ud boolForKey:@"Preferences.General.auto_join_on_invited"];
 }
 
++ (BOOL)showEffects
+{
+	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+	return [ud boolForKey:@"Preferences.General.show_effects"];
+}
+
 + (TabActionType)tabAction
 {
 	NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -823,6 +829,7 @@ static NSMutableArray *excludeWords;
 	[d setBool:YES forKey:@"Preferences.General.show_join_leave"];
 	[d setBool:YES forKey:@"Preferences.General.show_mode_change"];
 	[d setBool:YES forKey:@"Preferences.General.showRename"];
+	[d setBool:YES forKey:@"Preferences.General.show_effects"];
 	[d setBool:YES forKey:@"Preferences.General.use_growl"];
 	[d setBool:YES forKey:@"Preferences.General.stop_growl_on_active"];
 	[d setBool:YES forKey:@"Preferences.General.bounceIconOnEveryPrivateMessage"];
