@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>LimeChat by denji</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>LimeChat</h1>
+        <p>(Fork) LimeChat: IRC Client for Mac</p>
+
+        <p class="view"><a href="https://github.com/denji/limechat">View the Project on GitHub <small>denji/limechat</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/denji/limechat/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/denji/limechat/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/denji/limechat">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p>This fork is based on version <a href="http://limechat.net/psychs/">Satoshi Nakagawa (@Psychs)</a>, original source code can be found here <a href="http://github.com/psychs/limechat">http://github.com/psychs/limechat</a>.</p>
+
+<h3>
+<a id="whats-limechat-" class="anchor" href="#whats-limechat-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>What's LimeChat ?</h3>
+
+<p>LimeChat is an IRC client for macOS 10.8 — 10.12.</p>
+
+<h3>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h3>
+
+<ul>
+<li>Support macOS 10.8 — 10.12</li>
+<li>One window for multiple servers.</li>
+<li>Rich keyboard shortcuts for your comfortable operations.</li>
+<li>Fast and stable.</li>
+</ul>
+
+<h3>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h3>
+
+<p>Download and extract the following package, then copy <code>LimeChat.app</code> to your <code>/Applications/</code> folder.</p>
+
+<h3>
+<a id="source-code" class="anchor" href="#source-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Source code</h3>
+
+<p><a href="https://github.com/denji/limechat">https://github.com/denji/limechat</a></p>
+
+<h3>
+<a id="shortcut-keys" class="anchor" href="#shortcut-keys" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Shortcut keys</h3>
+
+<table>
+<thead>
+<tr>
+<th><code>Tab</code></th>
+<th>Complete nickname.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<code>Ctrl+Tab</code>, <code>Opt+Space</code>
+</td>
+<td>Move to the next <strong>unread</strong> channel.</td>
+</tr>
+<tr>
+<td>
+<code>Ctrl+Shift+Tab</code>, <code>Opt+Shift+Space</code>
+</td>
+<td>Move to the previous <strong>unread</strong> channel.</td>
+</tr>
+<tr>
+<td><code>Opt+Tab</code></td>
+<td>Move back to the previously selected channel.</td>
+</tr>
+<tr>
+<td>
+<code>Cmd+[Up/Down]</code>, <code>Cmd+Opt+[Up/Down]</code>, <code>Cmd+{/}</code>
+</td>
+<td>Move to the previous/next <strong>active</strong> channel.</td>
+</tr>
+<tr>
+<td><code>Ctrl+[Up/Down]</code></td>
+<td>Move to the previous/next channel.</td>
+</tr>
+<tr>
+<td><code>Cmd+Opt+Left/Right</code></td>
+<td>Move to the previous/next active server.</td>
+</tr>
+<tr>
+<td><code>Ctrl+Left/Right</code></td>
+<td>Move to the previous/next server.</td>
+</tr>
+<tr>
+<td><code>Cmd+0..9</code></td>
+<td>Move to the <strong>1st .. 10th</strong> channel in the current server.</td>
+</tr>
+<tr>
+<td>Cmd+Ctrl+1..0</td>
+<td>Move to the <strong>1st .. 10th</strong> server.</td>
+</tr>
+<tr>
+<td>Ctrl+Enter</td>
+<td>Send a notice message.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="change-log" class="anchor" href="#change-log" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Change log</h3>
+
+<ul>
+<li>2.43b1 (2019.09.24)
+
+<ul>
+<li>Based Xcode 8 (10.12 SDK)</li>
+<li>Support macOS 10.8 — 10.12.</li>
+<li>Sparkle 1.15.0b2</li>
+<li>"Mark As Read" also resets keyword highlights (thanks <a href="https://github.com/caius" class="user-mention">@caius</a>)</li>
+<li>support smb:// (thanks <a href="https://github.com/koyachi" class="user-mention">@koyachi</a>)</li>
+<li>Add "Highlight keywords in notice messages" preference</li>
+<li>Correct build error in Xcode 6.1 (thanks <a href="https://github.com/thomdixon" class="user-mention">@thomdixon</a>)</li>
+<li>Added ability to hide inline images that contain text specifying NSFW.</li>
+<li>Fixed a bug that FileLogger may builds wrong year-part of filename during year-end and new year season.</li>
+<li>Increase INLINE_IMAGE_MAX_SIZE to 5 MB</li>
+<li>Adds close button for image</li>
+<li>Add an option to disable mode-change messages</li>
+</ul>
+</li>
+<li>2.42 (2014.06.22)
+
+<ul>
+<li>Use nickname in settings when disconnected from menu.</li>
+<li>Improve passwords serialization.</li>
+</ul>
+</li>
+<li>2.41 (2014.05.05)
+
+<ul>
+<li>Fix bug when saving NickServ password.</li>
+</ul>
+</li>
+<li>2.40 (2014.05.04)
+
+<ul>
+<li>Use SSL option regardless of SOCKS proxy options.</li>
+</ul>
+</li>
+<li>2.39 (2013.10.25)
+
+<ul>
+<li>10.9 support.</li>
+</ul>
+</li>
+<li>2.38 (2013.09.12)
+
+<ul>
+<li>Fix minor issues.</li>
+</ul>
+</li>
+<li>2.37 (2013.09.05)
+
+<ul>
+<li>Update work around for the crashing bug in WebKit.</li>
+</ul>
+</li>
+<li>2.36 (2013.09.02)
+
+<ul>
+<li>Work around for a crashing bug in WebKit for Mountain Lion and Lion</li>
+<li>Support ISO8601 server times in ZNC.</li>
+<li>Add cmd+{ and cmd+} to switch active channels.</li>
+<li>Add cmd+opt+up/cmd+opt+down to go to previous/next channel.</li>
+<li>Use local time zone for CTCP time.</li>
+<li>Add instagram.com support to inline images.</li>
+<li>Don't expand image URLs that don't really point to images.</li>
+<li>Make channel name visible when app is inactive and active text/background are the same color.</li>
+</ul>
+</li>
+<li>2.35 (2013.04.15)
+
+<ul>
+<li>Update appcast URL.</li>
+</ul>
+</li>
+<li>2.34 (2013.03.31)
+
+<ul>
+<li>Fix gist upload feature.</li>
+</ul>
+</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/denji">denji</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
