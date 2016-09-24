@@ -1,6 +1,6 @@
 # LimeChat
 
-LimeChat is an IRC client for macOS (10.8 – 10.12).
+LimeChat is an IRC client for macOS (10.9 – 10.12).
 This fork is based on version Satoshi Nakagawa (@Psychs),
 original code can be found here http://github.com/psychs/limechat.
 
