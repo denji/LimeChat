@@ -2,5 +2,6 @@ language: objective-c
 osx_image: xcode8
 branches:
   only: master
-script: xcodebuild -project LimeChat.xcodeproj -scheme 'LimeChat' -sdk macosx10.12 build
-# script: xcodebuild -project LimeChat.xcodeproj -scheme 'LimeChat' -sdk macosx10.12 build test
+script:
+  - xcodebuild -sdk macosx10.12 build -project LimeChat.xcodeproj -target 'LimeChat' -configuration
+    Release CODE_SIGN_IDENTITY=''
