@@ -215,24 +215,24 @@
 	int sending = [_dcc countSendingItems];
 
 	if( receiving > 0 || sending > 0 ) {
-		NSMutableString *msg = [NSMutableString stringWithString:@"Now you are "];
+        NSMutableString *msg = [NSMutableString stringWithString:@"At the moment there is "];
 		if( receiving > 0 ) {
-			[msg appendFormat:@"receiving %d files", receiving];
+			[msg appendFormat:@"receiving %d file(s)", receiving];
 		}
 		if( sending > 0 ) {
 			if( receiving > 0 ) {
 				[msg appendString:@" and "];
 			}
-			[msg appendFormat:@"sending %d files", sending];
+			[msg appendFormat:@"sending %d file(s)", sending];
 		}
 		[msg appendString:@"."];
-		NSInteger result = NSRunAlertPanel( @"Quit LimeChat?", msg, @"Quit", @"Cancel", nil );
+		NSInteger result = NSRunAlertPanel( @"Do you want to stop & quit?", msg, @"Quit", @"Cancel", nil );
 		if( result != NSAlertDefaultReturn ) {
 			return NO;
 		}
 	}
 	else if( [Preferences confirmQuit] ) {
-		NSInteger result = NSRunAlertPanel( @"Quit LimeChat?", @"", @"Quit", @"Cancel", nil );
+		NSInteger result = NSRunAlertPanel( @"Do you want to quit?", @"", @"Quit", @"Cancel", nil );
 		if( result != NSAlertDefaultReturn ) {
 			return NO;
 		}

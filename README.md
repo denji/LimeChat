@@ -15,6 +15,7 @@ original code can be found here http://github.com/psychs/limechat.
 **Release Status**
 
 [![Latest Version](https://img.shields.io/github/release/denji/LimeChat.svg?style=flat-square)](https://github.com/denji/LimeChat/releases)
+[![Bintray Version](https://img.shields.io/bintray/v/denji/generic/LimeChat.svg?style=flat-square)](https://dl.bintray.com/denji/generic/)
 [![Software License](https://img.shields.io/badge/license-GPL%20v2-blue.svg?style=flat-square)](/LICENSE.md)
 
 ## Author
