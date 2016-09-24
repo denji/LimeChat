@@ -3,8 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
-
-@interface NSLocale (NSLocaleHelper)
+@interface NSLocale ( NSLocaleHelper )
 
 + (BOOL)prefersJapaneseLanguage;
 

@@ -3,11 +3,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface ImageURLParser : NSObject
 
-+ (BOOL)isImageFileURL:(NSString*)url;
-+ (BOOL)isImageContent:(NSString*)contentType;
-+ (NSString*)serviceImageURLForURL:(NSString*)url;
++ (BOOL)isImageFileURL:(NSString *)url;
++ (BOOL)isImageContent:(NSString *)contentType;
++ (NSString *)serviceImageURLForURL:(NSString *)url;
 
 @end

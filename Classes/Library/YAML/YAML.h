@@ -1,16 +1,16 @@
-#import <Foundation/Foundation.h>
 #import "YAMLCategories.h"
+#import <Foundation/Foundation.h>
 
-extern id yaml_parse_raw_utf8(const char *str, long len);
+extern id yaml_parse_raw_utf8( const char *str, long len );
 
-@interface NSObject (PublicYAMLAdditions)
+@interface NSObject ( PublicYAMLAdditions )
 
 // -toYAML and +fromYAML are the methods you will need to override for your classes
 // overide -toYAML to return a NSArray, NSDictionary, NSString or NSNumber
 - (id)toYAML;
 
 // overide +fromYAML to read the same back in
-// [MyClass fromYAML:[me toYAML]] should give a copy of me 
+// [MyClass fromYAML:[me toYAML]] should give a copy of me
 + (id)fromYAML:(id)data;
 
 // -yamlData is a sibling of -toYAML
@@ -19,10 +19,10 @@ extern id yaml_parse_raw_utf8(const char *str, long len);
 
 // -yamlParse is the opposite of -yamlData
 // it will decode the wrapped up data of -yamlData
-// [[me yamlData] yamlParse] should give a copy of me 
+// [[me yamlData] yamlParse] should give a copy of me
 - (id)yamlParse;
 
 // yamlDescription provides the actual yaml text that you can write out to a file
-- (NSString*)yamlDescription;
+- (NSString *)yamlDescription;
 
 @end

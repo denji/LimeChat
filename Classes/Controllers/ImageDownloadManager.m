@@ -2,89 +2,86 @@
 // You can redistribute it and/or modify it under the terms of the GPL version 2 (see the file GPL.txt).
 
 #import "ImageDownloadManager.h"
-#import "ImageSizeCheckClient.h"
 #import "IRCWorld.h"
+#import "ImageSizeCheckClient.h"
 
+static ImageDownloadManager *_instance;
 
-static ImageDownloadManager* _instance;
-
-
-@implementation ImageDownloadManager
-{
-    NSMutableSet* _checkers;
+@implementation ImageDownloadManager {
+	NSMutableSet *_checkers;
 }
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        _checkers = [NSMutableSet new];
-    }
-    return self;
+	self = [super init];
+	if( self ) {
+		_checkers = [NSMutableSet new];
+	}
+	return self;
 }
 
 - (void)dealloc
 {
-    [_checkers makeObjectsPerformSelector:@selector(cancel)];
+	[_checkers makeObjectsPerformSelector:@selector( cancel )];
 }
 
-+ (ImageDownloadManager*)instance
++ (ImageDownloadManager *)instance
 {
-    if (!_instance) {
-        _instance = [ImageDownloadManager new];
-    }
-    return _instance;
+	if( !_instance ) {
+		_instance = [ImageDownloadManager new];
+	}
+	return _instance;
 }
 
 + (void)disposeInstance
 {
-    _instance = nil;
+	_instance = nil;
 }
 
-- (void)checkImageSize:(NSString*)url client:(IRCClient*)client channel:(IRCChannel*)channel lineNumber:(int)lineNumber imageIndex:(int)imageIndex
+- (void)checkImageSize:(NSString *)url client:(IRCClient *)client channel:(IRCChannel *)channel lineNumber:(int)lineNumber imageIndex:(int)imageIndex
 {
-    ImageSizeCheckClient* c = [ImageSizeCheckClient new];
-    c.delegate = self;
-    c.url = url;
-    c.uid = client.uid;
-    c.cid = channel.uid;
-    c.lineNumber = lineNumber;
-    c.imageIndex = imageIndex;
-    [c checkSize];
-    [_checkers addObject:c];
+	ImageSizeCheckClient *c = [ImageSizeCheckClient new];
+	c.delegate = self;
+	c.url = url;
+	c.uid = client.uid;
+	c.cid = channel.uid;
+	c.lineNumber = lineNumber;
+	c.imageIndex = imageIndex;
+	[c checkSize];
+	[_checkers addObject:c];
 }
 
 #pragma mark - ImageSizeCheckClient Delegate
 
-- (void)imageSizeCheckClient:(ImageSizeCheckClient*)sender didReceiveContentLength:(long long)contentLength andType:(NSString*)contentType
+- (void)imageSizeCheckClient:(ImageSizeCheckClient *)sender didReceiveContentLength:(long long)contentLength andType:(NSString *)contentType
 {
-    [_checkers removeObject:sender];
+	[_checkers removeObject:sender];
 
-    int uid = sender.uid;
-    int cid = sender.cid;
-    LogController* log = nil;
+	int uid = sender.uid;
+	int cid = sender.cid;
+	LogController *log = nil;
 
-    if (cid) {
-        IRCChannel* channel = [_world findChannelByClientId:uid channelId:cid];
-        if (channel) {
-            log = channel.log;
-        }
-    }
-    else {
-        IRCClient* client = [_world findClientById:uid];
-        if (client) {
-            log = client.log;
-        }
-    }
+	if( cid ) {
+		IRCChannel *channel = [_world findChannelByClientId:uid channelId:cid];
+		if( channel ) {
+			log = channel.log;
+		}
+	}
+	else {
+		IRCClient *client = [_world findClientById:uid];
+		if( client ) {
+			log = client.log;
+		}
+	}
 
-    if (log) {
-        [log expandImage:sender.url lineNumber:sender.lineNumber imageIndex:sender.imageIndex contentLength:contentLength contentType:contentType];
-    }
+	if( log ) {
+		[log expandImage:sender.url lineNumber:sender.lineNumber imageIndex:sender.imageIndex contentLength:contentLength contentType:contentType];
+	}
 }
 
-- (void)imageSizeCheckClient:(ImageSizeCheckClient*)sender didFailWithError:(NSError*)error statusCode:(int)statusCode
+- (void)imageSizeCheckClient:(ImageSizeCheckClient *)sender didFailWithError:(NSError *)error statusCode:(int)statusCode
 {
-    [_checkers removeObject:sender];
+	[_checkers removeObject:sender];
 }
 
 @end

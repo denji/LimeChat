@@ -4,94 +4,93 @@
 #import "NSDictionaryHelper.h"
 #import "NSStringHelper.h"
 
-@implementation NSDictionary (NSDictionaryHelper)
+@implementation NSDictionary ( NSDictionaryHelper )
 
-- (BOOL)boolForKey:(NSString*)key
+- (BOOL)boolForKey:(NSString *)key
 {
-    id obj = [self objectForKey:key];
-    if ([obj respondsToSelector:@selector(boolValue)]) {
-        return [obj boolValue];
-    }
-    return NO;
+	id obj = [self objectForKey:key];
+	if( [obj respondsToSelector:@selector( boolValue )] ) {
+		return [obj boolValue];
+	}
+	return NO;
 }
 
-- (int)intForKey:(NSString*)key
+- (int)intForKey:(NSString *)key
 {
-    id obj = [self objectForKey:key];
-    if ([obj respondsToSelector:@selector(intValue)]) {
-        return [obj intValue];
-    }
-    return 0;
+	id obj = [self objectForKey:key];
+	if( [obj respondsToSelector:@selector( intValue )] ) {
+		return [obj intValue];
+	}
+	return 0;
 }
 
-- (long long)longLongForKey:(NSString*)key
+- (long long)longLongForKey:(NSString *)key
 {
-    id obj = [self objectForKey:key];
-    if ([obj respondsToSelector:@selector(longLongValue)]) {
-        return [obj longLongValue];
-    }
-    return 0;
+	id obj = [self objectForKey:key];
+	if( [obj respondsToSelector:@selector( longLongValue )] ) {
+		return [obj longLongValue];
+	}
+	return 0;
 }
 
-- (double)doubleForKey:(NSString*)key
+- (double)doubleForKey:(NSString *)key
 {
-    id obj = [self objectForKey:key];
-    if ([obj respondsToSelector:@selector(doubleValue)]) {
-        return [obj doubleValue];
-    }
-    return 0;
+	id obj = [self objectForKey:key];
+	if( [obj respondsToSelector:@selector( doubleValue )] ) {
+		return [obj doubleValue];
+	}
+	return 0;
 }
 
-- (NSString*)stringForKey:(NSString*)key
+- (NSString *)stringForKey:(NSString *)key
 {
-    id obj = [self objectForKey:key];
-    if ([obj isKindOfClass:[NSString class]]) {
-        return obj;
-    }
-    return nil;
+	id obj = [self objectForKey:key];
+	if( [obj isKindOfClass:[NSString class]] ) {
+		return obj;
+	}
+	return nil;
 }
 
-- (NSDictionary*)dictionaryForKey:(NSString*)key
+- (NSDictionary *)dictionaryForKey:(NSString *)key
 {
-    id obj = [self objectForKey:key];
-    if ([obj isKindOfClass:[NSDictionary class]]) {
-        return obj;
-    }
-    return nil;
+	id obj = [self objectForKey:key];
+	if( [obj isKindOfClass:[NSDictionary class]] ) {
+		return obj;
+	}
+	return nil;
 }
 
-- (NSArray*)arrayForKey:(NSString*)key
+- (NSArray *)arrayForKey:(NSString *)key
 {
-    id obj = [self objectForKey:key];
-    if ([obj isKindOfClass:[NSArray class]]) {
-        return obj;
-    }
-    return nil;
+	id obj = [self objectForKey:key];
+	if( [obj isKindOfClass:[NSArray class]] ) {
+		return obj;
+	}
+	return nil;
 }
 
 @end
 
+@implementation NSMutableDictionary ( NSMutableDictionaryHelper )
 
-@implementation NSMutableDictionary (NSMutableDictionaryHelper)
-
-- (void)setBool:(BOOL)value forKey:(NSString*)key
+- (void)setBool:(BOOL)value forKey:(NSString *)key
 {
-    [self setObject:@(value) forKey:key];
+	[self setObject:@( value ) forKey:key];
 }
 
-- (void)setInt:(int)value forKey:(NSString*)key
+- (void)setInt:(int)value forKey:(NSString *)key
 {
-    [self setObject:@(value) forKey:key];
+	[self setObject:@( value ) forKey:key];
 }
 
-- (void)setLongLong:(long long)value forKey:(NSString*)key
+- (void)setLongLong:(long long)value forKey:(NSString *)key
 {
-    [self setObject:@(value) forKey:key];
+	[self setObject:@( value ) forKey:key];
 }
 
-- (void)setDouble:(double)value forKey:(NSString*)key
+- (void)setDouble:(double)value forKey:(NSString *)key
 {
-    [self setObject:@(value) forKey:key];
+	[self setObject:@( value ) forKey:key];
 }
 
 @end

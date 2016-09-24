@@ -3,13 +3,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface IRCWorldConfig : NSObject <NSMutableCopying>
 
-@property (nonatomic, readonly) NSMutableArray* clients;
-@property (nonatomic, readonly) NSMutableArray* autoOp;
+@property ( nonatomic, readonly ) NSMutableArray *clients;
+@property ( nonatomic, readonly ) NSMutableArray *autoOp;
 
-- (id)initWithDictionary:(NSDictionary*)dic;
-- (NSMutableDictionary*)dictionaryValueSavingToKeychain:(BOOL)saveToKeychain includingChildren:(BOOL)includingChildren;
+- (id)initWithDictionary:(NSDictionary *)dic;
+- (NSMutableDictionary *)dictionaryValueSavingToKeychain:(BOOL)saveToKeychain includingChildren:(BOOL)includingChildren;
 
 @end

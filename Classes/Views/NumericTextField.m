@@ -3,32 +3,31 @@
 
 #import "NumericTextField.h"
 
-
 @implementation NumericTextField
 
 - (id)initWithFrame:(NSRect)frame
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setUpNumberFormatter];
-    }
-    return self;
+	self = [super initWithFrame:frame];
+	if( self ) {
+		[self setUpNumberFormatter];
+	}
+	return self;
 }
 
 - (id)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self setUpNumberFormatter];
-    }
-    return self;
+	self = [super initWithCoder:coder];
+	if( self ) {
+		[self setUpNumberFormatter];
+	}
+	return self;
 }
 
 - (void)setUpNumberFormatter
 {
-    NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
-    [numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
-    [[self cell] setFormatter:numberFormatter];
+	NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+	[numberFormatter setNumberStyle:NSNumberFormatterNoStyle];
+	[[self cell] setFormatter:numberFormatter];
 }
 
 @end

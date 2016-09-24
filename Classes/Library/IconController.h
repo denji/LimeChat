@@ -3,7 +3,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface IconController : NSObject
 
 - (void)setHighlight:(BOOL)aHighlight newTalk:(BOOL)aNewTalk;

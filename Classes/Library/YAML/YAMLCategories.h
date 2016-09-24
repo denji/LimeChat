@@ -15,35 +15,35 @@
 - (Class)tag;
 @end
 
-@interface NSString (YAMLAdditions)
+@interface NSString ( YAMLAdditions )
 + (id)yamlStringWithUTF8String:(const char *)bytes length:(unsigned)length;
 - (int)yamlIndent;
-- (NSString*)yamlIndented:(int)indent;
-- (NSString*)yamlDescriptionWithIndent:(int)indent;
+- (NSString *)yamlIndented:(int)indent;
+- (NSString *)yamlDescriptionWithIndent:(int)indent;
 @end
 
-@interface NSArray (YAMLAdditions)
-- (NSString*)yamlDescriptionWithIndent:(int)indent;
-- (NSArray*)yamlCollectWithSelector:(SEL)aSelector withObject:(id)anObject;
-- (NSArray*)yamlCollectWithSelector:(SEL)aSelector;
+@interface NSArray ( YAMLAdditions )
+- (NSString *)yamlDescriptionWithIndent:(int)indent;
+- (NSArray *)yamlCollectWithSelector:(SEL)aSelector withObject:(id)anObject;
+- (NSArray *)yamlCollectWithSelector:(SEL)aSelector;
 @end
 
-@interface NSDictionary (YAMLAdditions)
-- (NSString*)yamlDescriptionWithIndent:(int)indent;
-- (NSDictionary*)yamlCollectWithSelector:(SEL)aSelector withObject:(id)anObject;
-- (NSDictionary*)yamlCollectWithSelector:(SEL)aSelector;
+@interface NSDictionary ( YAMLAdditions )
+- (NSString *)yamlDescriptionWithIndent:(int)indent;
+- (NSDictionary *)yamlCollectWithSelector:(SEL)aSelector withObject:(id)anObject;
+- (NSDictionary *)yamlCollectWithSelector:(SEL)aSelector;
 @end
 
-@interface NSObject (YAMLAdditions)
+@interface NSObject ( YAMLAdditions )
 - (id)yamlData;
 - (id)toYAML;
-- (NSString*)yamlDescription;
-- (NSString*)yamlDescriptionWithIndent:(int)indent;
+- (NSString *)yamlDescription;
+- (NSString *)yamlDescriptionWithIndent:(int)indent;
 - (void)yamlPerformSelector:(SEL)sel withEachObjectInArray:(NSArray *)array;
 - (void)yamlPerformSelector:(SEL)sel withEachObjectInSet:(NSSet *)set;
 @end
 
-@interface NSData (YAMLAdditions) 
+@interface NSData ( YAMLAdditions )
 - (id)yamlDescriptionWithIndent:(int)indent;
 - (id)toYAML;
 @end

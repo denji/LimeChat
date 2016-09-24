@@ -1,47 +1,45 @@
 // LimeChat is copyrighted free software by Satoshi Nakagawa <psychs AT limechat DOT net>.
 // You can redistribute it and/or modify it under the terms of the GPL version 2 (see the file GPL.txt).
 
-#import <Cocoa/Cocoa.h>
-#import "MainWindow.h"
 #import "InputTextField.h"
-#import "ServerTreeView.h"
-#import "MemberListView.h"
-#import "PreferencesController.h"
-#import "NickSheet.h"
-#import "ModeSheet.h"
-#import "TopicSheet.h"
-#import "PasteSheet.h"
 #import "InviteSheet.h"
-
+#import "MainWindow.h"
+#import "MemberListView.h"
+#import "ModeSheet.h"
+#import "NickSheet.h"
+#import "PasteSheet.h"
+#import "PreferencesController.h"
+#import "ServerTreeView.h"
+#import "TopicSheet.h"
+#import <Cocoa/Cocoa.h>
 
 @class AppController;
 @class IRCWorld;
 @class IRCClient;
 
-
 @interface MenuController : NSObject
 
-@property (nonatomic, weak) AppController* app;
-@property (nonatomic, weak) IRCWorld* world;
-@property (nonatomic, weak) MainWindow* window;
-@property (nonatomic, weak) InputTextField* text;
-@property (nonatomic, weak) ServerTreeView* tree;
-@property (nonatomic, weak) MemberListView* memberList;
+@property ( nonatomic, weak ) AppController *app;
+@property ( nonatomic, weak ) IRCWorld *world;
+@property ( nonatomic, weak ) MainWindow *window;
+@property ( nonatomic, weak ) InputTextField *text;
+@property ( nonatomic, weak ) ServerTreeView *tree;
+@property ( nonatomic, weak ) MemberListView *memberList;
 
-@property (nonatomic) NSString* pointedUrl;
-@property (nonatomic) NSString* pointedAddress;
-@property (nonatomic) NSString* pointedNick;
-@property (nonatomic) NSString* pointedChannelName;
+@property ( nonatomic ) NSString *pointedUrl;
+@property ( nonatomic ) NSString *pointedAddress;
+@property ( nonatomic ) NSString *pointedNick;
+@property ( nonatomic ) NSString *pointedChannelName;
 
-@property (nonatomic) IBOutlet NSMenuItem* closeWindowItem;
-@property (nonatomic) IBOutlet NSMenuItem* closeCurrentPanelItem;
-@property (nonatomic) IBOutlet NSMenuItem* checkForUpdateItem;
-@property (nonatomic) IBOutlet NSMenuItem* toggleMuteSounds;
+@property ( nonatomic ) IBOutlet NSMenuItem *closeWindowItem;
+@property ( nonatomic ) IBOutlet NSMenuItem *closeCurrentPanelItem;
+@property ( nonatomic ) IBOutlet NSMenuItem *checkForUpdateItem;
+@property ( nonatomic ) IBOutlet NSMenuItem *toggleMuteSounds;
 
 - (void)setUp;
 - (void)terminate;
-- (void)startPasteSheetWithContent:(NSString*)content nick:(NSString*)nick uid:(int)uid cid:(int)cid editMode:(BOOL)editMode;
-- (void)showServerPropertyDialog:(IRCClient*)client ignore:(BOOL)ignore;
+- (void)startPasteSheetWithContent:(NSString *)content nick:(NSString *)nick uid:(int)uid cid:(int)cid editMode:(BOOL)editMode;
+- (void)showServerPropertyDialog:(IRCClient *)client ignore:(BOOL)ignore;
 
 - (void)onPreferences:(id)sender;
 - (void)onMute:(id)sender;

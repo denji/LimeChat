@@ -3,11 +3,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-
-@interface NSPasteboard (NSPasteboardHelper)
+@interface NSPasteboard ( NSPasteboardHelper )
 
 - (BOOL)hasStringContent;
-- (NSString*)stringContent;
-- (void)setStringContent:(NSString*)s;
+- (NSString *)stringContent;
+- (void)setStringContent:(NSString *)s;
 
 @end

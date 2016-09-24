@@ -3,12 +3,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface LogTheme : NSObject
 
-@property (nonatomic) NSString* fileName;
-@property (nonatomic, readonly) NSURL* baseUrl;
-@property (nonatomic) NSString* content;
+@property ( nonatomic ) NSString *fileName;
+@property ( nonatomic, readonly ) NSURL *baseUrl;
+@property ( nonatomic ) NSString *content;
 
 - (void)reload;
 

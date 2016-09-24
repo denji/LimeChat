@@ -3,23 +3,22 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface IgnoreItem : NSObject
 
-@property (nonatomic) NSString* nick;
-@property (nonatomic) NSString* text;
-@property (nonatomic) BOOL useRegexForNick;
-@property (nonatomic) BOOL useRegexForText;
-@property (nonatomic) NSArray* channels;
+@property ( nonatomic ) NSString *nick;
+@property ( nonatomic ) NSString *text;
+@property ( nonatomic ) BOOL useRegexForNick;
+@property ( nonatomic ) BOOL useRegexForText;
+@property ( nonatomic ) NSArray *channels;
 
-@property (nonatomic, readonly) BOOL isValid;
-@property (nonatomic, readonly) NSString* displayNick;
-@property (nonatomic, readonly) NSString* displayText;
+@property ( nonatomic, readonly ) BOOL isValid;
+@property ( nonatomic, readonly ) NSString *displayNick;
+@property ( nonatomic, readonly ) NSString *displayText;
 
-- (id)initWithDictionary:(NSDictionary*)dic;
-- (NSDictionary*)dictionaryValue;
+- (id)initWithDictionary:(NSDictionary *)dic;
+- (NSDictionary *)dictionaryValue;
 - (BOOL)isEqual:(id)other;
 
-- (BOOL)checkIgnore:(NSString*)inputText nick:(NSString*)inputNick channel:(NSString*)channel;
+- (BOOL)checkIgnore:(NSString *)inputText nick:(NSString *)inputNick channel:(NSString *)channel;
 
 @end

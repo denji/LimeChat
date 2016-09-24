@@ -3,11 +3,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface InputHistory : NSObject
 
-- (void)add:(NSString*)s;
-- (NSString*)up:(NSString*)s;
-- (NSString*)down:(NSString*)s;
+- (void)add:(NSString *)s;
+- (NSString *)up:(NSString *)s;
+- (NSString *)down:(NSString *)s;
 
 @end

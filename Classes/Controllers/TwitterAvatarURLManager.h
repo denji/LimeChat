@@ -3,15 +3,13 @@
 
 #import <Foundation/Foundation.h>
 
-
-#define TwitterAvatarURLManagerDidGetImageURLNotification   @"TwitterAvatarURLManagerDidGetImageURLNotification"
-
+#define TwitterAvatarURLManagerDidGetImageURLNotification @"TwitterAvatarURLManagerDidGetImageURLNotification"
 
 @interface TwitterAvatarURLManager : NSObject
 
-+ (TwitterAvatarURLManager*)instance;
++ (TwitterAvatarURLManager *)instance;
 
-- (NSString*)imageURLForTwitterScreenName:(NSString*)screenName;
-- (BOOL)fetchImageURLForTwitterScreenName:(NSString*)screenName;
+- (NSString *)imageURLForTwitterScreenName:(NSString *)screenName;
+- (BOOL)fetchImageURLForTwitterScreenName:(NSString *)screenName;
 
 @end

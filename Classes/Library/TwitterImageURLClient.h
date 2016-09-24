@@ -3,11 +3,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface TwitterImageURLClient : NSObject
 
-@property (nonatomic, weak) id delegate;
-@property (nonatomic) NSString* screenName;
+@property ( nonatomic, weak ) id delegate;
+@property ( nonatomic ) NSString *screenName;
 
 - (void)cancel;
 - (void)getImageURL;
@@ -16,9 +15,8 @@
 
 @end
 
-
-@interface NSObject (TwitterImageURLClientDelegate)
-- (void)twitterImageURLClient:(TwitterImageURLClient*)sender didGetImageURL:(NSString*)imageURL;
-- (void)twitterImageURLClientDidReceiveBadURL:(TwitterImageURLClient*)sender;
-- (void)twitterImageURLClient:(TwitterImageURLClient*)sender didFailWithError:(NSString*)error;
+@interface NSObject ( TwitterImageURLClientDelegate )
+- (void)twitterImageURLClient:(TwitterImageURLClient *)sender didGetImageURL:(NSString *)imageURL;
+- (void)twitterImageURLClientDidReceiveBadURL:(TwitterImageURLClient *)sender;
+- (void)twitterImageURLClient:(TwitterImageURLClient *)sender didFailWithError:(NSString *)error;
 @end

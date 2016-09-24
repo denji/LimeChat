@@ -3,11 +3,10 @@
 
 #import "NotificationController.h"
 
-
 @interface UserNotificationController : NSObject <NotificationController, NSUserNotificationCenterDelegate>
 
-@property (nonatomic, weak) id<NotificationControllerDelegate> delegate;
+@property ( nonatomic, weak ) id<NotificationControllerDelegate> delegate;
 
-- (void)notify:(UserNotificationType)type title:(NSString*)title desc:(NSString*)desc context:(id)context;
+- (void)notify:(UserNotificationType)type title:(NSString *)title desc:(NSString *)desc context:(id)context;
 
 @end

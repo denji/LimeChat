@@ -3,17 +3,15 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface TreeView : NSOutlineView
 
-@property (nonatomic, weak) id keyDelegate;
+@property ( nonatomic, weak ) id keyDelegate;
 
 - (int)countSelectedRows;
 - (void)selectItemAtIndex:(int)index;
 
 @end
 
-
-@interface NSObject (TreeViewDelegate)
-- (void)treeViewKeyDown:(NSEvent*)e;
+@interface NSObject ( TreeViewDelegate )
+- (void)treeViewKeyDown:(NSEvent *)e;
 @end

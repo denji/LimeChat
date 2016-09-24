@@ -1,48 +1,46 @@
 // LimeChat is copyrighted free software by Satoshi Nakagawa <psychs AT limechat DOT net>.
 // You can redistribute it and/or modify it under the terms of the GPL version 2 (see the file GPL.txt).
 
-#import <Cocoa/Cocoa.h>
 #import "NotificationController.h"
-
+#import <Cocoa/Cocoa.h>
 
 typedef enum {
-    ADDRESS_DETECT_SPECIFY = 0,
-    ADDRESS_DETECT_JOIN = 2,
+	ADDRESS_DETECT_SPECIFY = 0,
+	ADDRESS_DETECT_JOIN = 2,
 } AddressDetectionType;
 
 typedef enum {
-    DCC_AUTO_ACCEPT = 0,
-    DCC_SHOW_DIALOG,
-    DCC_IGNORE,
+	DCC_AUTO_ACCEPT = 0,
+	DCC_SHOW_DIALOG,
+	DCC_IGNORE,
 } DCCActionType;
 
 typedef enum {
-    MAIN_WINDOW_LAYOUT_2_COLUMN = 0,
-    MAIN_WINDOW_LAYOUT_3_COLUMN,
+	MAIN_WINDOW_LAYOUT_2_COLUMN = 0,
+	MAIN_WINDOW_LAYOUT_3_COLUMN,
 } MainWindowLayoutType;
 
 typedef enum {
-    DOUBLE_CLICK_USER_ACTION_TALK = 0,
-    DOUBLE_CLICK_USER_ACTION_WHOIS,
+	DOUBLE_CLICK_USER_ACTION_TALK = 0,
+	DOUBLE_CLICK_USER_ACTION_WHOIS,
 } DoubleClickUserActionType;
 
 typedef enum {
-    KEYWORD_MATCH_PARTIAL = 0,
-    KEYWORD_MATCH_EXACT,
+	KEYWORD_MATCH_PARTIAL = 0,
+	KEYWORD_MATCH_EXACT,
 } KeywordMatchType;
 
 typedef enum {
-    TAB_COMPLETE_NICK = 0,
-    TAB_UNREAD,
-    TAB_NONE = 100,
+	TAB_COMPLETE_NICK = 0,
+	TAB_UNREAD,
+	TAB_NONE = 100,
 } TabActionType;
-
 
 @interface Preferences : NSObject
 
 + (DCCActionType)dccAction;
 + (AddressDetectionType)dccAddressDetectionMethod;
-+ (NSString*)dccMyaddress;
++ (NSString *)dccMyaddress;
 + (BOOL)autoRejoin;
 + (BOOL)confirmQuit;
 + (DoubleClickUserActionType)doubleClickUserAction;
@@ -67,27 +65,27 @@ typedef enum {
 + (KeywordMatchType)keywordMatchingMethod;
 + (BOOL)keywordWholeLine;
 
-+ (NSString*)pasteCommand;
-+ (void)setPasteCommand:(NSString*)value;
-+ (NSString*)pasteSyntax;
-+ (void)setPasteSyntax:(NSString*)value;
++ (NSString *)pasteCommand;
++ (void)setPasteCommand:(NSString *)value;
++ (NSString *)pasteSyntax;
++ (void)setPasteSyntax:(NSString *)value;
 
-+ (NSString*)themeName;
-+ (void)setThemeName:(NSString*)value;
-+ (NSString*)themeLogFontName;
-+ (void)setThemeLogFontName:(NSString*)value;
++ (NSString *)themeName;
++ (void)setThemeName:(NSString *)value;
++ (NSString *)themeLogFontName;
++ (void)setThemeLogFontName:(NSString *)value;
 + (double)themeLogFontSize;
 + (void)setThemeLogFontSize:(double)value;
-+ (NSString*)themeInputFontName;
-+ (void)setThemeInputFontName:(NSString*)value;
++ (NSString *)themeInputFontName;
++ (void)setThemeInputFontName:(NSString *)value;
 + (double)themeInputFontSize;
 + (void)setThemeInputFontSize:(double)value;
-+ (NSString*)themeNickFormat;
++ (NSString *)themeNickFormat;
 + (BOOL)themeOverrideLogFont;
 + (BOOL)themeOverrideInputFont;
 + (BOOL)themeOverrideNickFormat;
 + (BOOL)themeOverrideTimestampFormat;
-+ (NSString*)themeTimestampFormat;
++ (NSString *)themeTimestampFormat;
 + (double)themeTransparency;
 
 + (int)dccFirstPort;
@@ -101,12 +99,12 @@ typedef enum {
 + (int)maxLogLines;
 + (void)setMaxLogLines:(int)value;
 
-+ (NSString*)transcriptFolder;
-+ (void)setTranscriptFolder:(NSString*)value;
++ (NSString *)transcriptFolder;
++ (void)setTranscriptFolder:(NSString *)value;
 
-+ (NSString*)titleForEvent:(UserNotificationType)event;
-+ (NSString*)soundForEvent:(UserNotificationType)event;
-+ (void)setSound:(NSString*)value forEvent:(UserNotificationType)event;
++ (NSString *)titleForEvent:(UserNotificationType)event;
++ (NSString *)soundForEvent:(UserNotificationType)event;
++ (void)setSound:(NSString *)value forEvent:(UserNotificationType)event;
 + (BOOL)isMuted;
 + (void)setMuted:(BOOL)value;
 + (BOOL)userNotificationEnabledForEvent:(UserNotificationType)event;
@@ -131,19 +129,19 @@ typedef enum {
 + (BOOL)textReplacementEnabled;
 + (void)setTextReplacementEnabled:(BOOL)value;
 
-+ (NSDictionary*)loadWorld;
-+ (void)saveWorld:(NSDictionary*)value;
++ (NSDictionary *)loadWorld;
++ (void)saveWorld:(NSDictionary *)value;
 
-+ (NSDictionary*)loadWindowStateWithName:(NSString*)name;
-+ (void)saveWindowState:(NSDictionary*)value name:(NSString*)name;
++ (NSDictionary *)loadWindowStateWithName:(NSString *)name;
++ (void)saveWindowState:(NSDictionary *)value name:(NSString *)name;
 
 + (int)hotKeyKeyCode;
 + (void)setHotKeyKeyCode:(int)value;
 + (NSUInteger)hotKeyModifierFlags;
 + (void)setHotKeyModifierFlags:(NSUInteger)value;
 
-+ (NSArray*)keywords;
-+ (NSArray*)excludeWords;
++ (NSArray *)keywords;
++ (NSArray *)excludeWords;
 + (void)cleanUpWords;
 
 + (void)initPreferences;

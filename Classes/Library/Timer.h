@@ -3,20 +3,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface Timer : NSObject
 
-@property (nonatomic, weak) id delegate;
-@property (nonatomic) BOOL reqeat;
-@property (nonatomic) SEL selector;
-@property (nonatomic, readonly) BOOL isActive;
+@property ( nonatomic, weak ) id delegate;
+@property ( nonatomic ) BOOL reqeat;
+@property ( nonatomic ) SEL selector;
+@property ( nonatomic, readonly ) BOOL isActive;
 
 - (void)start:(NSTimeInterval)interval;
 - (void)stop;
 
 @end
 
-
-@interface NSObject (TimerDelegate)
-- (void)timerOnTimer:(Timer*)sender;
+@interface NSObject ( TimerDelegate )
+- (void)timerOnTimer:(Timer *)sender;
 @end

@@ -3,24 +3,23 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDictionary (NSDictionaryHelper)
+@interface NSDictionary ( NSDictionaryHelper )
 
-- (BOOL)boolForKey:(NSString*)key;
-- (int)intForKey:(NSString*)key;
-- (long long)longLongForKey:(NSString*)key;
-- (double)doubleForKey:(NSString*)key;
-- (NSString*)stringForKey:(NSString*)key;
-- (NSDictionary*)dictionaryForKey:(NSString*)key;
-- (NSArray*)arrayForKey:(NSString*)key;
+- (BOOL)boolForKey:(NSString *)key;
+- (int)intForKey:(NSString *)key;
+- (long long)longLongForKey:(NSString *)key;
+- (double)doubleForKey:(NSString *)key;
+- (NSString *)stringForKey:(NSString *)key;
+- (NSDictionary *)dictionaryForKey:(NSString *)key;
+- (NSArray *)arrayForKey:(NSString *)key;
 
 @end
 
+@interface NSMutableDictionary ( NSMutableDictionaryHelper )
 
-@interface NSMutableDictionary (NSMutableDictionaryHelper)
-
-- (void)setBool:(BOOL)value forKey:(NSString*)key;
-- (void)setInt:(int)value forKey:(NSString*)key;
-- (void)setLongLong:(long long)value forKey:(NSString*)key;
-- (void)setDouble:(double)value forKey:(NSString*)key;
+- (void)setBool:(BOOL)value forKey:(NSString *)key;
+- (void)setInt:(int)value forKey:(NSString *)key;
+- (void)setLongLong:(long long)value forKey:(NSString *)key;
+- (void)setDouble:(double)value forKey:(NSString *)key;
 
 @end

@@ -3,20 +3,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @class IRCClient;
 @class IRCChannel;
 
-
 @interface FileLogger : NSObject
 
-@property (nonatomic, weak) IRCClient* client;
-@property (nonatomic, weak) IRCChannel* channel;
+@property ( nonatomic, weak ) IRCClient *client;
+@property ( nonatomic, weak ) IRCChannel *channel;
 
 - (void)open;
 - (void)close;
 - (void)reopenIfNeeded;
 
-- (void)writeLine:(NSString*)s;
+- (void)writeLine:(NSString *)s;
 
 @end

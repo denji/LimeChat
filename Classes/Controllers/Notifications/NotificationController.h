@@ -3,7 +3,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef enum {
 	USER_NOTIFICATION_HIGHLIGHT,
 	USER_NOTIFICATION_NEW_TALK,
@@ -23,19 +22,16 @@ typedef enum {
 	USER_NOTIFICATION_COUNT,
 } UserNotificationType;
 
-
-#define USER_NOTIFICATION_DCC_KEY                   @"dcc"
-#define USER_NOTIFICATION_CLIENT_ID_KEY             @"clientId"
-#define USER_NOTIFICATION_CHANNEL_ID_KEY            @"channelId"
-#define USER_NOTIFICATION_INVITED_CHANNEL_NAME_KEY  @"invitedChannelName"
-
+#define USER_NOTIFICATION_DCC_KEY @"dcc"
+#define USER_NOTIFICATION_CLIENT_ID_KEY @"clientId"
+#define USER_NOTIFICATION_CHANNEL_ID_KEY @"channelId"
+#define USER_NOTIFICATION_INVITED_CHANNEL_NAME_KEY @"invitedChannelName"
 
 @protocol NotificationControllerDelegate <NSObject>
 - (void)notificationControllerDidActivateNotification:(id)context actionButtonClicked:(BOOL)actionButtonClicked;
 @end
 
-
 @protocol NotificationController <NSObject>
-@property (nonatomic, weak) id<NotificationControllerDelegate> delegate;
-- (void)notify:(UserNotificationType)type title:(NSString*)title desc:(NSString*)desc context:(id)context;
+@property ( nonatomic, weak ) id<NotificationControllerDelegate> delegate;
+- (void)notify:(UserNotificationType)type title:(NSString *)title desc:(NSString *)desc context:(id)context;
 @end

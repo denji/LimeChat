@@ -3,14 +3,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @class LogController;
 @class LogPolicy;
 
-
 @interface LogScriptEventSink : NSObject
 
-@property (nonatomic, weak) id owner;
-@property (nonatomic) LogPolicy* policy;
+@property ( nonatomic, weak ) id owner;
+@property ( nonatomic ) LogPolicy *policy;
 
 @end

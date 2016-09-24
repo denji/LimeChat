@@ -3,11 +3,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface TimerCommand : NSObject
 
-@property (nonatomic) CFAbsoluteTime time;
-@property (nonatomic) int cid;
-@property (nonatomic, copy) NSString* input;
+@property ( nonatomic ) CFAbsoluteTime time;
+@property ( nonatomic ) int cid;
+@property ( nonatomic, copy ) NSString *input;
 
 @end

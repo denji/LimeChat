@@ -3,13 +3,12 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface IRCPrefix : NSObject <NSCoding>
 
-@property (nonatomic) NSString* raw;
-@property (nonatomic) NSString* nick;
-@property (nonatomic) NSString* user;
-@property (nonatomic) NSString* address;
-@property (nonatomic) BOOL isServer;
+@property ( nonatomic ) NSString *raw;
+@property ( nonatomic ) NSString *nick;
+@property ( nonatomic ) NSString *user;
+@property ( nonatomic ) NSString *address;
+@property ( nonatomic ) BOOL isServer;
 
 @end

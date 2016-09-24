@@ -3,38 +3,37 @@
 
 #import "LogTheme.h"
 
-
 @implementation LogTheme
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-    }
-    return self;
+	self = [super init];
+	if( self ) {
+	}
+	return self;
 }
 
 - (void)setFileName:(NSString *)value
 {
-    if (_fileName != value) {
-        _fileName = value;
-        _baseUrl = nil;
+	if( _fileName != value ) {
+		_fileName = value;
+		_baseUrl = nil;
 
-        if (_fileName) {
-            _baseUrl = [NSURL fileURLWithPath:[_fileName stringByDeletingLastPathComponent]];
-        }
-    }
+		if( _fileName ) {
+			_baseUrl = [NSURL fileURLWithPath:[_fileName stringByDeletingLastPathComponent]];
+		}
+	}
 
-    [self reload];
+	[self reload];
 }
 
 - (void)reload
 {
-    _content = nil;
+	_content = nil;
 
-    if (_fileName) {
-        _content = [NSString stringWithContentsOfFile:_fileName encoding:NSUTF8StringEncoding error:NULL];
-    }
+	if( _fileName ) {
+		_content = [NSString stringWithContentsOfFile:_fileName encoding:NSUTF8StringEncoding error:NULL];
+	}
 }
 
 @end

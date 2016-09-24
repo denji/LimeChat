@@ -3,22 +3,20 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface ListView : NSTableView
 
-@property (nonatomic, weak) id keyDelegate;
-@property (nonatomic, weak) id textDelegate;
+@property ( nonatomic, weak ) id keyDelegate;
+@property ( nonatomic, weak ) id textDelegate;
 
 - (int)countSelectedRows;
 - (void)selectItemAtIndex:(int)index;
-- (void)selectRows:(NSArray*)indices;
-- (void)selectRows:(NSArray*)indices extendSelection:(BOOL)extend;
+- (void)selectRows:(NSArray *)indices;
+- (void)selectRows:(NSArray *)indices extendSelection:(BOOL)extend;
 
 @end
 
-
-@interface NSObject (ListViewDelegate)
+@interface NSObject ( ListViewDelegate )
 - (void)listViewDelete;
 - (void)listViewMoveUp;
-- (void)listViewKeyDown:(NSEvent*)e;
+- (void)listViewKeyDown:(NSEvent *)e;
 @end

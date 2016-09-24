@@ -3,11 +3,10 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface ThinSplitView : NSSplitView
 
-@property (nonatomic) int fixedViewIndex;
-@property (nonatomic) int position;
-@property (nonatomic) BOOL inverted;
+@property ( nonatomic ) int fixedViewIndex;
+@property ( nonatomic ) int position;
+@property ( nonatomic ) BOOL inverted;
 
 @end

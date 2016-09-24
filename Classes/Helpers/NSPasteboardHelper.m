@@ -3,23 +3,22 @@
 
 #import "NSPasteboardHelper.h"
 
-
-@implementation NSPasteboard (NSPasteboardHelper)
+@implementation NSPasteboard ( NSPasteboardHelper )
 
 - (BOOL)hasStringContent
 {
-    return [self availableTypeFromArray:[NSArray arrayWithObject:NSStringPboardType]] != nil;
+	return [self availableTypeFromArray:[NSArray arrayWithObject:NSStringPboardType]] != nil;
 }
 
-- (NSString*)stringContent
+- (NSString *)stringContent
 {
-    return [self stringForType:NSStringPboardType];
+	return [self stringForType:NSStringPboardType];
 }
 
-- (void)setStringContent:(NSString*)s
+- (void)setStringContent:(NSString *)s
 {
-    [self declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
-    [self setString:s forType:NSStringPboardType];
+	[self declareTypes:[NSArray arrayWithObject:NSStringPboardType] owner:nil];
+	[self setString:s forType:NSStringPboardType];
 }
 
 @end

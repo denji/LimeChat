@@ -3,24 +3,21 @@
 
 #import <Foundation/Foundation.h>
 
-
 typedef enum {
-    kGistClientGetTop,
-    kGistClientPost,
+	kGistClientGetTop,
+	kGistClientPost,
 } GistClientStage;
-
 
 @interface GistClient : NSObject
 
-@property (nonatomic, weak) id delegate;
+@property ( nonatomic, weak ) id delegate;
 
 - (void)cancel;
-- (void)send:(NSString*)text fileType:(NSString*)fileType private:(BOOL)isPrivate;
+- (void)send:(NSString *)text fileType:(NSString *)fileType private:(BOOL)isPrivate;
 
 @end
 
-
-@interface NSObject (GistClientDelegate)
-- (void)gistClient:(GistClient*)sender didReceiveResponse:(NSString*)url;
-- (void)gistClient:(GistClient*)sender didFailWithError:(NSString*)error statusCode:(int)statusCode;
+@interface NSObject ( GistClientDelegate )
+- (void)gistClient:(GistClient *)sender didReceiveResponse:(NSString *)url;
+- (void)gistClient:(GistClient *)sender didFailWithError:(NSString *)error statusCode:(int)statusCode;
 @end

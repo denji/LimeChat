@@ -3,22 +3,21 @@
 
 #import "NickCompletinStatus.h"
 
-
 @implementation NickCompletinStatus
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-        [self clear];
-    }
-    return self;
+	self = [super init];
+	if( self ) {
+		[self clear];
+	}
+	return self;
 }
 
 - (void)clear
 {
-    _text = nil;
-    _range = NSMakeRange(NSNotFound, 0);
+	_text = nil;
+	_range = NSMakeRange( NSNotFound, 0 );
 }
 
 @end

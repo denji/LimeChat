@@ -3,18 +3,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface HostResolver : NSObject
 
-@property (nonatomic, weak) id delegate;
+@property ( nonatomic, weak ) id delegate;
 
 - (id)initWithDelegate:(id)aDelegate;
-- (void)resolve:(NSString*)hostname;
+- (void)resolve:(NSString *)hostname;
 
 @end
 
-
-@interface NSObject (HostResolverDelegate)
-- (void)hostResolver:(HostResolver*)sender didResolve:(NSHost*)host;
-- (void)hostResolver:(HostResolver*)sender didNotResolve:(NSString*)hostname;
+@interface NSObject ( HostResolverDelegate )
+- (void)hostResolver:(HostResolver *)sender didResolve:(NSHost *)host;
+- (void)hostResolver:(HostResolver *)sender didNotResolve:(NSString *)hostname;
 @end

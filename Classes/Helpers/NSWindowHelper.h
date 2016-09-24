@@ -3,9 +3,8 @@
 
 #import <Foundation/Foundation.h>
 
+@interface NSWindow ( NSWindowHelper )
 
-@interface NSWindow (NSWindowHelper)
-
-- (void)centerOfWindow:(NSWindow*)window;
+- (void)centerOfWindow:(NSWindow *)window;
 
 @end

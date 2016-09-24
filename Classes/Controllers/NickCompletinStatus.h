@@ -3,11 +3,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface NickCompletinStatus : NSObject
 
-@property (nonatomic) NSString* text;
-@property (nonatomic) NSRange range;
+@property ( nonatomic ) NSString *text;
+@property ( nonatomic ) NSRange range;
 
 - (void)clear;
 

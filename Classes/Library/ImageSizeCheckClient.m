@@ -3,110 +3,107 @@
 
 #import "ImageSizeCheckClient.h"
 
+#define IMAGE_SIZE_CHECK_TIMEOUT 30
 
-#define IMAGE_SIZE_CHECK_TIMEOUT    30
-
-
-@implementation ImageSizeCheckClient
-{
-    NSURLConnection* _conn;
-    NSHTTPURLResponse* _response;
+@implementation ImageSizeCheckClient {
+	NSURLConnection *_conn;
+	NSHTTPURLResponse *_response;
 }
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-    }
-    return self;
+	self = [super init];
+	if( self ) {
+	}
+	return self;
 }
 
 - (void)dealloc
 {
-    [self cancel];
+	[self cancel];
 }
 
 - (void)cancel
 {
-    [_conn cancel];
-    _conn = nil;
-    _response = nil;
+	[_conn cancel];
+	_conn = nil;
+	_response = nil;
 }
 
 - (void)checkSize
 {
-    [self cancel];
+	[self cancel];
 
-    NSURL* u = [NSURL URLWithString:_url];
-    NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:u cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:IMAGE_SIZE_CHECK_TIMEOUT];
-    [req setHTTPMethod:@"HEAD"];
+	NSURL *u = [NSURL URLWithString:_url];
+	NSMutableURLRequest *req = [NSMutableURLRequest requestWithURL:u cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:IMAGE_SIZE_CHECK_TIMEOUT];
+	[req setHTTPMethod:@"HEAD"];
 
-    if ([[u host] hasSuffix:@"pixiv.net"]) {
-        [req setValue:@"http://www.pixiv.net" forHTTPHeaderField:@"Referer"];
-    }
+	if( [[u host] hasSuffix:@"pixiv.net"] ) {
+		[req setValue:@"http://www.pixiv.net" forHTTPHeaderField:@"Referer"];
+	}
 
-    _conn = [[NSURLConnection alloc] initWithRequest:req delegate:self];
+	_conn = [[NSURLConnection alloc] initWithRequest:req delegate:self];
 }
 
 #pragma mark - NSURLConnection Delegate
 
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
-    return nil;
+	return nil;
 }
 
 - (void)connection:(NSURLConnection *)sender didReceiveResponse:(NSHTTPURLResponse *)aResponse
 {
-    if (_conn != sender) return;
+	if( _conn != sender ) return;
 
-    _response = aResponse;
+	_response = aResponse;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)sender
 {
-    if (_conn != sender) return;
+	if( _conn != sender ) return;
 
-    /* If a user clicks a link that redirects to a data image, then
+	/* If a user clicks a link that redirects to a data image, then
 	 this value will not be NSHTTPURLResponse which results in a crash
 	 when trying to make a call to -allHeaderFields */
-	if ([_response isKindOfClass:[NSHTTPURLResponse class]] == NO) {
+	if( [_response isKindOfClass:[NSHTTPURLResponse class]] == NO ) {
 		return;
-    }
-    
-    long long contentLength = 0;
-    NSString* contentType;
-    int statusCode = [_response statusCode];
+	}
 
-    if (200 <= statusCode && statusCode < 300) {
-        NSDictionary* header = [_response allHeaderFields];
-        NSNumber* contentLengthNum = [header objectForKey:@"Content-Length"];
-        if ([contentLengthNum respondsToSelector:@selector(longLongValue)]) {
-            contentLength = [contentLengthNum longLongValue];
-        }
-        contentType = [header objectForKey:@"Content-Type"];
-    }
+	long long contentLength = 0;
+	NSString *contentType;
+	int statusCode = [_response statusCode];
 
-    if (contentLength) {
-        if ([_delegate respondsToSelector:@selector(imageSizeCheckClient:didReceiveContentLength:andType:)]) {
-            [_delegate imageSizeCheckClient:self didReceiveContentLength:contentLength andType:contentType];
-        }
-    }
-    else {
-        if ([_delegate respondsToSelector:@selector(imageSizeCheckClient:didFailWithError:statusCode:)]) {
-            [_delegate imageSizeCheckClient:self didFailWithError:nil statusCode:statusCode];
-        }
-    }
+	if( 200 <= statusCode && statusCode < 300 ) {
+		NSDictionary *header = [_response allHeaderFields];
+		NSNumber *contentLengthNum = [header objectForKey:@"Content-Length"];
+		if( [contentLengthNum respondsToSelector:@selector( longLongValue )] ) {
+			contentLength = [contentLengthNum longLongValue];
+		}
+		contentType = [header objectForKey:@"Content-Type"];
+	}
+
+	if( contentLength ) {
+		if( [_delegate respondsToSelector:@selector( imageSizeCheckClient:didReceiveContentLength:andType: )] ) {
+			[_delegate imageSizeCheckClient:self didReceiveContentLength:contentLength andType:contentType];
+		}
+	}
+	else {
+		if( [_delegate respondsToSelector:@selector( imageSizeCheckClient:didFailWithError:statusCode: )] ) {
+			[_delegate imageSizeCheckClient:self didFailWithError:nil statusCode:statusCode];
+		}
+	}
 }
 
-- (void)connection:(NSURLConnection*)sender didFailWithError:(NSError*)error
+- (void)connection:(NSURLConnection *)sender didFailWithError:(NSError *)error
 {
-    if (_conn != sender) return;
+	if( _conn != sender ) return;
 
-    [self cancel];
+	[self cancel];
 
-    if ([_delegate respondsToSelector:@selector(imageSizeCheckClient:didFailWithError:statusCode:)]) {
-        [_delegate imageSizeCheckClient:self didFailWithError:error statusCode:0];
-    }
+	if( [_delegate respondsToSelector:@selector( imageSizeCheckClient:didFailWithError:statusCode: )] ) {
+		[_delegate imageSizeCheckClient:self didFailWithError:error statusCode:0];
+	}
 }
 
 @end

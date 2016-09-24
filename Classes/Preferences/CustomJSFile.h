@@ -3,11 +3,10 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface CustomJSFile : NSObject
 
-@property (nonatomic) NSString* fileName;
-@property (nonatomic, readonly) NSString* content;
+@property ( nonatomic ) NSString *fileName;
+@property ( nonatomic, readonly ) NSString *content;
 
 - (void)reload;
 

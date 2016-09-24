@@ -13,62 +13,64 @@
 #define SYCK_YAML_MAJOR 1
 #define SYCK_YAML_MINOR 0
 
-#define SYCK_VERSION    "0.70"
-#define YAML_DOMAIN     "yaml.org,2002"
+#define SYCK_VERSION "0.70"
+#define YAML_DOMAIN "yaml.org,2002"
 
-# include <stdlib.h>
-# include <string.h>
-# include <strings.h>
+#include "syck_st.h"
+#include <ctype.h>
 #include <stddef.h>
 #include <stdio.h>
-#include <ctype.h>
-#include "syck_st.h"
+#include <stdlib.h>
+#include <string.h>
+#include <strings.h>
 
-#if defined(__cplusplus)
+#if defined( __cplusplus )
 extern "C" {
 #endif
 
 /*
  * Memory Allocation
  */
-#if defined(HAVE_ALLOCA_H) && !defined(__GNUC__)
+#if defined( HAVE_ALLOCA_H ) && !defined( __GNUC__ )
 #include <alloca.h>
 #endif
 
 #if SYCK_DEBUG
-  void syck_assert( const char *, unsigned );
-# define ASSERT(f) \
-    if ( f ) \
-        {}   \
-    else     \
-        syck_assert( __FILE__, __LINE__ )
+void syck_assert( const char *, unsigned );
+#define ASSERT( f ) \
+	if( f ) {       \
+	}               \
+	else            \
+		syck_assert( __FILE__, __LINE__ )
 #else
-# define ASSERT(f)
+#define ASSERT( f )
 #endif
 
 #ifndef NULL
-# define NULL (void *)0
+#define NULL (void *)0
 #endif
 
 #define ALLOC_CT 8
 #define SYCK_BUFFERSIZE 4096
-#define S_ALLOC_N(type,n) (type*)malloc(sizeof(type)*(n))
-#define S_ALLOC(type) (type*)malloc(sizeof(type))
-#define S_REALLOC_N(var,type,n) (var)=(type*)realloc((char*)(var),sizeof(type)*(n))
-#define S_FREE(n) free(n); n = NULL;
+#define S_ALLOC_N( type, n ) (type *)malloc( sizeof( type ) * ( n ) )
+#define S_ALLOC( type ) (type *)malloc( sizeof( type ) )
+#define S_REALLOC_N( var, type, n ) ( var ) = (type *)realloc( (char *)( var ), sizeof( type ) * ( n ) )
+#define S_FREE( n ) \
+	free( n );      \
+	n = NULL;
 
-#define S_ALLOCA_N(type,n) (type*)alloca(sizeof(type)*(n))
+#define S_ALLOCA_N( type, n ) (type *)alloca( sizeof( type ) * ( n ) )
 
-#define S_MEMZERO(p,type,n) memset((p), 0, sizeof(type)*(n))
-#define S_MEMCPY(p1,p2,type,n) memcpy((p1), (p2), sizeof(type)*(n))
-#define S_MEMMOVE(p1,p2,type,n) memmove((p1), (p2), sizeof(type)*(n))
-#define S_MEMCMP(p1,p2,type,n) memcmp((p1), (p2), sizeof(type)*(n))
+#define S_MEMZERO( p, type, n ) memset( ( p ), 0, sizeof( type ) * ( n ) )
+#define S_MEMCPY( p1, p2, type, n ) memcpy( ( p1 ), ( p2 ), sizeof( type ) * ( n ) )
+#define S_MEMMOVE( p1, p2, type, n ) memmove( ( p1 ), ( p2 ), sizeof( type ) * ( n ) )
+#define S_MEMCMP( p1, p2, type, n ) memcmp( ( p1 ), ( p2 ), sizeof( type ) * ( n ) )
 
-#define BLOCK_FOLD  10
-#define BLOCK_LIT   20
+#define BLOCK_FOLD 10
+#define BLOCK_LIT 20
 #define BLOCK_PLAIN 30
-#define NL_CHOMP    40
-#define NL_KEEP     50
+#define NL_CHOMP 40
+#define NL_KEEP 50
 
 /*
  * Node definitions
@@ -82,72 +84,72 @@ typedef long st_data_t;
 typedef struct _syck_node SyckNode;
 
 enum syck_kind_tag {
-    syck_map_kind,
-    syck_seq_kind,
-    syck_str_kind
+	syck_map_kind,
+	syck_seq_kind,
+	syck_str_kind
 };
 
 enum map_part {
-    map_key,
-    map_value
+	map_key,
+	map_value
 };
 
 enum map_style {
-    map_none,
-    map_inline
+	map_none,
+	map_inline
 };
 
 enum seq_style {
-    seq_none,
-    seq_inline
+	seq_none,
+	seq_inline
 };
 
 enum scalar_style {
-    scalar_none,
-    scalar_1quote,
-    scalar_2quote,
-    scalar_fold,
-    scalar_literal,
-    scalar_plain
+	scalar_none,
+	scalar_1quote,
+	scalar_2quote,
+	scalar_fold,
+	scalar_literal,
+	scalar_plain
 };
 
 /*
  * Node metadata struct
  */
 struct _syck_node {
-    /* Symbol table ID */
-    SYMID id;
-    /* Underlying kind */
-    enum syck_kind_tag kind;
-    /* Fully qualified tag-uri for type */
-    char *type_id;
-    /* Anchor name */
-    char *anchor;
-    union {
-        /* Storage for map data */
-        struct SyckMap {
-            enum map_style style;
-            SYMID *keys;
-            SYMID *values;
-            long capa;
-            long idx;
-        } *pairs;
-        /* Storage for sequence data */
-        struct SyckSeq {
-            enum seq_style style;
-            SYMID *items;
-            long capa;
-            long idx;
-        } *list;
-        /* Storage for string data */
-        struct SyckStr {
-            enum scalar_style style;
-            char *ptr;
-            long len;
-        } *str;
-    } data;
-    /* Shortcut node */
-    void *shortcut;
+	/* Symbol table ID */
+	SYMID id;
+	/* Underlying kind */
+	enum syck_kind_tag kind;
+	/* Fully qualified tag-uri for type */
+	char *type_id;
+	/* Anchor name */
+	char *anchor;
+	union {
+		/* Storage for map data */
+		struct SyckMap {
+			enum map_style style;
+			SYMID *keys;
+			SYMID *values;
+			long capa;
+			long idx;
+		} * pairs;
+		/* Storage for sequence data */
+		struct SyckSeq {
+			enum seq_style style;
+			SYMID *items;
+			long capa;
+			long idx;
+		} * list;
+		/* Storage for string data */
+		struct SyckStr {
+			enum scalar_style style;
+			char *ptr;
+			long len;
+		} * str;
+	} data;
+	/* Shortcut node */
+	void *shortcut;
 };
 
 /*
@@ -158,113 +160,113 @@ typedef struct _syck_file SyckIoFile;
 typedef struct _syck_str SyckIoStr;
 typedef struct _syck_level SyckLevel;
 
-typedef SYMID (*SyckNodeHandler)(SyckParser *, SyckNode *);
-typedef void (*SyckErrorHandler)(SyckParser *, const char *);
-typedef SyckNode * (*SyckBadAnchorHandler)(SyckParser *, const char *);
-typedef long (*SyckIoFileRead)(char *, SyckIoFile *, long, long); 
-typedef long (*SyckIoStrRead)(char *, SyckIoStr *, long, long);
+typedef SYMID ( *SyckNodeHandler )( SyckParser *, SyckNode * );
+typedef void ( *SyckErrorHandler )( SyckParser *, const char * );
+typedef SyckNode *( *SyckBadAnchorHandler )( SyckParser *, const char * );
+typedef long ( *SyckIoFileRead )( char *, SyckIoFile *, long, long );
+typedef long ( *SyckIoStrRead )( char *, SyckIoStr *, long, long );
 
 enum syck_io_type {
-    syck_io_str,
-    syck_io_file
+	syck_io_str,
+	syck_io_file
 };
 
 enum syck_parser_input {
-    syck_yaml_utf8,
-    syck_yaml_utf16,
-    syck_yaml_utf32,
-    syck_bytecode_utf8
+	syck_yaml_utf8,
+	syck_yaml_utf16,
+	syck_yaml_utf32,
+	syck_bytecode_utf8
 };
 
 enum syck_level_status {
-    syck_lvl_header,
-    syck_lvl_doc,
-    syck_lvl_open,
-    syck_lvl_seq,
-    syck_lvl_map,
-    syck_lvl_block,
-    syck_lvl_str,
-    syck_lvl_iseq,
-    syck_lvl_imap,
-    syck_lvl_end,
-    syck_lvl_pause,
-    syck_lvl_anctag,
-    syck_lvl_mapx,
-    syck_lvl_seqx
+	syck_lvl_header,
+	syck_lvl_doc,
+	syck_lvl_open,
+	syck_lvl_seq,
+	syck_lvl_map,
+	syck_lvl_block,
+	syck_lvl_str,
+	syck_lvl_iseq,
+	syck_lvl_imap,
+	syck_lvl_end,
+	syck_lvl_pause,
+	syck_lvl_anctag,
+	syck_lvl_mapx,
+	syck_lvl_seqx
 };
 
 /*
  * Parser structs
  */
 struct _syck_file {
-    /* File pointer */
-    FILE *ptr;
-    /* Function which FILE -> buffer */
-    SyckIoFileRead read;
+	/* File pointer */
+	FILE *ptr;
+	/* Function which FILE -> buffer */
+	SyckIoFileRead read;
 };
 
 struct _syck_str {
-    /* String buffer pointers */
-    const char *beg, *ptr, *end;
-    /* Function which string -> buffer */
-    SyckIoStrRead read;
+	/* String buffer pointers */
+	const char *beg, *ptr, *end;
+	/* Function which string -> buffer */
+	SyckIoStrRead read;
 };
 
 struct _syck_level {
-    /* Indent */
-    int spaces;
-    /* Counts nodes emitted at this level, useful for parsing 
+	/* Indent */
+	int spaces;
+	/* Counts nodes emitted at this level, useful for parsing 
      * keys and pairs in bytecode */
-    int ncount;
-    /* Does node have anchors or tags? */
-    int anctag;
-    /* Domain prefixing at the given level */
-    char *domain;
-    /* Keeps a node status */
-    enum syck_level_status status;
+	int ncount;
+	/* Does node have anchors or tags? */
+	int anctag;
+	/* Domain prefixing at the given level */
+	char *domain;
+	/* Keeps a node status */
+	enum syck_level_status status;
 };
 
 struct _syck_parser {
-    /* Root node */
-    SYMID root, root_on_error;
-    /* Implicit typing flag */
-    int implicit_typing, taguri_expansion;
-    /* Scripting language function to handle nodes */
-    SyckNodeHandler handler;
-    /* Error handler */
-    SyckErrorHandler error_handler;
-    /* InvalidAnchor handler */
-    SyckBadAnchorHandler bad_anchor_handler;
-    /* Parser input type */
-    enum syck_parser_input input_type;
-    /* IO type */
-    enum syck_io_type io_type;
-    /* Custom buffer size */
-    size_t bufsize;
-    /* Buffer pointers */
-    char *buffer, *linectptr, *lineptr, *toktmp, *token, *cursor, *marker, *limit;
-    /* Line counter */
-    int linect;
-    /* Last token from yylex() */
-    int last_token;
-    /* Force a token upon next call to yylex() */
-    int force_token;
-    /* EOF flag */
-    int eof;
-    union {
-        SyckIoFile *file;
-        SyckIoStr *str;
-    } io;
-    /* Symbol table for anchors */
-    st_table *anchors, *bad_anchors;
-    /* Optional symbol table for SYMIDs */
-    st_table *syms;
-    /* Levels of indentation */
-    SyckLevel *levels;
-    int lvl_idx;
-    int lvl_capa;
-    /* Pointer for extension's use */
-    void *bonus;
+	/* Root node */
+	SYMID root, root_on_error;
+	/* Implicit typing flag */
+	int implicit_typing, taguri_expansion;
+	/* Scripting language function to handle nodes */
+	SyckNodeHandler handler;
+	/* Error handler */
+	SyckErrorHandler error_handler;
+	/* InvalidAnchor handler */
+	SyckBadAnchorHandler bad_anchor_handler;
+	/* Parser input type */
+	enum syck_parser_input input_type;
+	/* IO type */
+	enum syck_io_type io_type;
+	/* Custom buffer size */
+	size_t bufsize;
+	/* Buffer pointers */
+	char *buffer, *linectptr, *lineptr, *toktmp, *token, *cursor, *marker, *limit;
+	/* Line counter */
+	int linect;
+	/* Last token from yylex() */
+	int last_token;
+	/* Force a token upon next call to yylex() */
+	int force_token;
+	/* EOF flag */
+	int eof;
+	union {
+		SyckIoFile *file;
+		SyckIoStr *str;
+	} io;
+	/* Symbol table for anchors */
+	st_table *anchors, *bad_anchors;
+	/* Optional symbol table for SYMIDs */
+	st_table *syms;
+	/* Levels of indentation */
+	SyckLevel *levels;
+	int lvl_idx;
+	int lvl_capa;
+	/* Pointer for extension's use */
+	void *bonus;
 };
 
 /*
@@ -273,72 +275,72 @@ struct _syck_parser {
 typedef struct _syck_emitter SyckEmitter;
 typedef struct _syck_emitter_node SyckEmitterNode;
 
-typedef void (*SyckOutputHandler)(SyckEmitter *, const char *, long); 
-typedef void (*SyckEmitterHandler)(SyckEmitter *, st_data_t); 
+typedef void ( *SyckOutputHandler )( SyckEmitter *, const char *, long );
+typedef void ( *SyckEmitterHandler )( SyckEmitter *, st_data_t );
 
 enum doc_stage {
-    doc_open,
-    doc_processing
+	doc_open,
+	doc_processing
 };
 
 /*
  * Emitter struct
  */
 struct _syck_emitter {
-    /* Headerless doc flag */
-    int headless;
-    /* Force header? */
-    int use_header;
-    /* Force version? */
-    int use_version;
-    /* Sort hash keys */
-    int sort_keys;
-    /* Anchor format */
-    char *anchor_format;
-    /* Explicit typing on all collections? */
-    int explicit_typing;
-    /* Best width on folded scalars */
-    int best_width;
-    /* Use literal[1] or folded[2] blocks on all text? */
-    enum scalar_style style;
-    /* Stage of written document */
-    enum doc_stage stage;
-    /* Level counter */
-    int level;
-    /* Default indentation */
-    int indent;
-    /* Object ignore ID */
-    SYMID ignore_id;
-    /* Symbol table for anchors */
-    st_table *markers, *anchors, *anchored;
-    /* Custom buffer size */
-    size_t bufsize;
-    /* Buffer */
-    char *buffer, *marker;
-    /* Absolute position of the buffer */
-    long bufpos;
-    /* Handler for emitter nodes */
-    SyckEmitterHandler emitter_handler;
-    /* Handler for output */
-    SyckOutputHandler output_handler;
-    /* Levels of indentation */
-    SyckLevel *levels;
-    int lvl_idx;
-    int lvl_capa;
-    /* Pointer for extension's use */
-    void *bonus;
+	/* Headerless doc flag */
+	int headless;
+	/* Force header? */
+	int use_header;
+	/* Force version? */
+	int use_version;
+	/* Sort hash keys */
+	int sort_keys;
+	/* Anchor format */
+	char *anchor_format;
+	/* Explicit typing on all collections? */
+	int explicit_typing;
+	/* Best width on folded scalars */
+	int best_width;
+	/* Use literal[1] or folded[2] blocks on all text? */
+	enum scalar_style style;
+	/* Stage of written document */
+	enum doc_stage stage;
+	/* Level counter */
+	int level;
+	/* Default indentation */
+	int indent;
+	/* Object ignore ID */
+	SYMID ignore_id;
+	/* Symbol table for anchors */
+	st_table *markers, *anchors, *anchored;
+	/* Custom buffer size */
+	size_t bufsize;
+	/* Buffer */
+	char *buffer, *marker;
+	/* Absolute position of the buffer */
+	long bufpos;
+	/* Handler for emitter nodes */
+	SyckEmitterHandler emitter_handler;
+	/* Handler for output */
+	SyckOutputHandler output_handler;
+	/* Levels of indentation */
+	SyckLevel *levels;
+	int lvl_idx;
+	int lvl_capa;
+	/* Pointer for extension's use */
+	void *bonus;
 };
 
 /*
  * Emitter node metadata struct
  */
 struct _syck_emitter_node {
-    /* Node buffer position */
-    long pos;
-    /* Current indent */
-    long indent;
-    /* Collection? */
-    int is_shortcut;
+	/* Node buffer position */
+	long pos;
+	/* Current indent */
+	long indent;
+	/* Collection? */
+	int is_shortcut;
 };
 
 /*
@@ -451,8 +453,8 @@ long syck_seq_count( SyckNode * );
 void syckerror( const char * );
 int syckparse( void * );
 
-#if defined(__cplusplus)
-}  /* extern "C" { */
+#if defined( __cplusplus )
+} /* extern "C" { */
 #endif
 
 #endif /* ifndef SYCK_H */

@@ -35,23 +35,23 @@
 
 /* Tokens.  */
 #ifndef YYTOKENTYPE
-# define YYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
+#define YYTOKENTYPE
+/* Put the tokens into the symbol table, so that GDB and other debuggers
       know about them.  */
-   enum yytokentype {
-     YAML_ANCHOR = 258,
-     YAML_ALIAS = 259,
-     YAML_TRANSFER = 260,
-     YAML_TAGURI = 261,
-     YAML_ITRANSFER = 262,
-     YAML_WORD = 263,
-     YAML_PLAIN = 264,
-     YAML_BLOCK = 265,
-     YAML_DOCSEP = 266,
-     YAML_IOPEN = 267,
-     YAML_INDENT = 268,
-     YAML_IEND = 269
-   };
+enum yytokentype {
+	YAML_ANCHOR = 258,
+	YAML_ALIAS = 259,
+	YAML_TRANSFER = 260,
+	YAML_TAGURI = 261,
+	YAML_ITRANSFER = 262,
+	YAML_WORD = 263,
+	YAML_PLAIN = 264,
+	YAML_BLOCK = 265,
+	YAML_DOCSEP = 266,
+	YAML_IOPEN = 267,
+	YAML_INDENT = 268,
+	YAML_IEND = 269
+};
 #endif
 /* Tokens.  */
 #define YAML_ANCHOR 258
@@ -67,24 +67,18 @@
 #define YAML_INDENT 268
 #define YAML_IEND 269
 
-
-
-
-#if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
+#if !defined YYSTYPE && !defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
 #line 42 "gram.y"
 {
-    SYMID nodeId;
-    SyckNode *nodeData;
-    char *name;
+	SYMID nodeId;
+	SyckNode *nodeData;
+	char *name;
 }
 /* Line 1529 of yacc.c.  */
 #line 83 "gram.h"
-	YYSTYPE;
-# define yystype YYSTYPE /* obsolescent; will be withdrawn */
-# define YYSTYPE_IS_DECLARED 1
-# define YYSTYPE_IS_TRIVIAL 1
+YYSTYPE;
+#define yystype YYSTYPE /* obsolescent; will be withdrawn */
+#define YYSTYPE_IS_DECLARED 1
+#define YYSTYPE_IS_TRIVIAL 1
 #endif
-
-
-

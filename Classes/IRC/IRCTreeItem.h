@@ -3,26 +3,24 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @class IRCClient;
 @class LogController;
 
-
 @interface IRCTreeItem : NSObject <NSTableViewDataSource, NSTableViewDelegate>
 
-@property (nonatomic) int uid;
-@property (nonatomic) LogController* log;
-@property (nonatomic) BOOL isKeyword;
-@property (nonatomic) BOOL isUnread;
-@property (nonatomic) BOOL isNewTalk;
-@property (nonatomic) BOOL isActive;
-@property (nonatomic, readonly) BOOL isClient;
-@property (nonatomic, readonly) IRCClient* client;
-@property (nonatomic, readonly) NSString* label;
-@property (nonatomic, readonly) NSString* name;
+@property ( nonatomic ) int uid;
+@property ( nonatomic ) LogController *log;
+@property ( nonatomic ) BOOL isKeyword;
+@property ( nonatomic ) BOOL isUnread;
+@property ( nonatomic ) BOOL isNewTalk;
+@property ( nonatomic ) BOOL isActive;
+@property ( nonatomic, readonly ) BOOL isClient;
+@property ( nonatomic, readonly ) IRCClient *client;
+@property ( nonatomic, readonly ) NSString *label;
+@property ( nonatomic, readonly ) NSString *name;
 
 - (void)resetState;
 - (int)numberOfChildren;
-- (IRCTreeItem*)childAtIndex:(int)index;
+- (IRCTreeItem *)childAtIndex:(int)index;
 
 @end

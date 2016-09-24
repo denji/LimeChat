@@ -3,7 +3,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDate (NSDateHelper)
+@interface NSDate ( NSDateHelper )
 
 /**
  Returns a new date represented by an ISO8601 string.

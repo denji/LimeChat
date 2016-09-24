@@ -3,6 +3,5 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface KeyRecorderCell : NSCell
 @end

@@ -3,35 +3,34 @@
 
 #import "SheetBase.h"
 
-
 @implementation SheetBase
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-    }
-    return self;
+	self = [super init];
+	if( self ) {
+	}
+	return self;
 }
 
 - (void)startSheet
 {
-    [_sheet startSheetModalForWindow:_parentWindow];
+	[_sheet startSheetModalForWindow:_parentWindow];
 }
 
 - (void)endSheet
 {
-    [_sheet endSheet];
+	[_sheet endSheet];
 }
 
 - (void)ok:(id)sender
 {
-    [self endSheet];
+	[self endSheet];
 }
 
 - (void)cancel:(id)sender
 {
-    [self endSheet];
+	[self endSheet];
 }
 
 @end

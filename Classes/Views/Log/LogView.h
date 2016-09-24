@@ -4,23 +4,21 @@
 #import <Cocoa/Cocoa.h>
 #import <WebKit/WebKit.h>
 
-
 @interface LogView : WebView
 
-@property (nonatomic, weak) id keyDelegate;
-@property (nonatomic, weak) id resizeDelegate;
+@property ( nonatomic, weak ) id keyDelegate;
+@property ( nonatomic, weak ) id resizeDelegate;
 
-- (NSString*)contentString;
+- (NSString *)contentString;
 
 - (void)clearSelection;
 - (BOOL)hasSelection;
-- (NSString*)selection;
+- (NSString *)selection;
 
 @end
 
-
-@interface NSObject (LogViewDelegate)
-- (void)logViewKeyDown:(NSEvent*)e;
+@interface NSObject ( LogViewDelegate )
+- (void)logViewKeyDown:(NSEvent *)e;
 - (void)logViewWillResize;
 - (void)logViewDidResize;
 @end

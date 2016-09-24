@@ -3,21 +3,19 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @class MenuController;
-
 
 @interface LogPolicy : NSObject
 
-@property (nonatomic, weak) MenuController* menuController;
-@property (nonatomic) NSMenu* menu;
-@property (nonatomic) NSMenu* urlMenu;
-@property (nonatomic) NSMenu* addrMenu;
-@property (nonatomic) NSMenu* memberMenu;
-@property (nonatomic) NSMenu* chanMenu;
-@property (nonatomic) NSString* url;
-@property (nonatomic) NSString* addr;
-@property (nonatomic) NSString* nick;
-@property (nonatomic) NSString* chan;
+@property ( nonatomic, weak ) MenuController *menuController;
+@property ( nonatomic ) NSMenu *menu;
+@property ( nonatomic ) NSMenu *urlMenu;
+@property ( nonatomic ) NSMenu *addrMenu;
+@property ( nonatomic ) NSMenu *memberMenu;
+@property ( nonatomic ) NSMenu *chanMenu;
+@property ( nonatomic ) NSString *url;
+@property ( nonatomic ) NSString *addr;
+@property ( nonatomic ) NSString *nick;
+@property ( nonatomic ) NSString *chan;
 
 @end

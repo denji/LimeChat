@@ -3,19 +3,18 @@
 
 #import "NSLocaleHelper.h"
 
-
-@implementation NSLocale (NSLocaleHelper)
+@implementation NSLocale ( NSLocaleHelper )
 
 + (BOOL)prefersJapaneseLanguage
 {
-    NSArray* langs = [self preferredLanguages];
-    if (langs.count) {
-        NSString* primary = [langs objectAtIndex:0];
-        if ([primary isEqualToString:@"ja"]) {
-            return YES;
-        }
-    }
-    return NO;
+	NSArray *langs = [self preferredLanguages];
+	if( langs.count ) {
+		NSString *primary = [langs objectAtIndex:0];
+		if( [primary isEqualToString:@"ja"] ) {
+			return YES;
+		}
+	}
+	return NO;
 }
 
 @end

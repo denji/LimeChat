@@ -3,18 +3,16 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface MarkedScroller : NSScroller
 
-@property (nonatomic, weak) id dataSource;
-@property (nonatomic, copy) NSArray* markData;
+@property ( nonatomic, weak ) id dataSource;
+@property ( nonatomic, copy ) NSArray *markData;
 
 - (void)updateScroller;
 
 @end
 
-
-@interface NSObject (MarkedScrollerDataSource)
-- (NSArray*)markedScrollerPositions:(MarkedScroller*)sender;
-- (NSColor*)markedScrollerColor:(MarkedScroller*)sender;
+@interface NSObject ( MarkedScrollerDataSource )
+- (NSArray *)markedScrollerPositions:(MarkedScroller *)sender;
+- (NSColor *)markedScrollerColor:(MarkedScroller *)sender;
 @end

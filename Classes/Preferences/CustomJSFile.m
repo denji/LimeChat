@@ -3,27 +3,26 @@
 
 #import "CustomJSFile.h"
 
-
 @implementation CustomJSFile
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-    }
-    return self;
+	self = [super init];
+	if( self ) {
+	}
+	return self;
 }
 
 - (void)setFileName:(NSString *)value
 {
-    _fileName = value;
-    [self reload];
+	_fileName = value;
+	[self reload];
 }
 
 - (void)reload
 {
-    NSData* data = [NSData dataWithContentsOfFile:_fileName];
-    _content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+	NSData *data = [NSData dataWithContentsOfFile:_fileName];
+	_content = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 }
 
 @end
