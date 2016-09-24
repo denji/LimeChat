@@ -76,12 +76,12 @@ typedef void *yamlbyte_producer_t;
 
 /* push and pull APIs need a way to communicate results */
 typedef enum {
-	YAMLBYTE_OK = 0, /* proceed                        */
-	YAMLBYTE_E_MEMORY = 'M', /* could not allocate memory      */
-	YAMLBYTE_E_READ = 'R', /* input stream read error        */
-	YAMLBYTE_E_WRITE = 'W', /* output stream write error      */
-	YAMLBYTE_E_OTHER = '?', /* some other error condition     */
-	YAMLBYTE_E_PARSE = 'P' /* parse error, check bytecodes   */
+    YAMLBYTE_OK = 0, /* proceed                        */
+    YAMLBYTE_E_MEMORY = 'M', /* could not allocate memory      */
+    YAMLBYTE_E_READ = 'R', /* input stream read error        */
+    YAMLBYTE_E_WRITE = 'W', /* output stream write error      */
+    YAMLBYTE_E_OTHER = '?', /* some other error condition     */
+    YAMLBYTE_E_PARSE = 'P' /* parse error, check bytecodes   */
 } yamlbyte_result_t;
 
 typedef const yamlbyte_char_t *yamlbyte_buff_t;
@@ -91,17 +91,17 @@ typedef const yamlbyte_char_t *yamlbyte_buff_t;
  */
 
 typedef struct yaml_instruction {
-	yamlbyte_char_t bytecode;
-	yamlbyte_buff_t start;
-	yamlbyte_buff_t finish; /* open range, *finish is _not_ part */
+    yamlbyte_char_t bytecode;
+    yamlbyte_buff_t start;
+    yamlbyte_buff_t finish; /* open range, *finish is _not_ part */
 } * yamlbyte_inst_t;
 
 /* producer pushes the instruction with one bytecode event to the 
  * consumer; if the consumer's result is not YAMLBYTE_OK, then
  * the producer should stop */
 typedef yamlbyte_result_t ( *yamlbyte_push_t )(
-	yamlbyte_consumer_t self,
-	yamlbyte_inst_t inst );
+    yamlbyte_consumer_t self,
+    yamlbyte_inst_t inst );
 
 /* consumer pulls a bytecode instruction from the producer; in this
  * case the instruction (and is buffer) are owned by the producer and
@@ -110,9 +110,9 @@ typedef yamlbyte_result_t ( *yamlbyte_push_t )(
  * it is important to call the pull function till it returns NULL so 
  * that the producer can clean up its memory allocations */
 typedef yamlbyte_result_t ( *yamlbyte_pull_t )(
-	yamlbyte_producer_t self,
-	yamlbyte_inst_t *inst /* to be filled in by the producer */
-	);
+    yamlbyte_producer_t self,
+    yamlbyte_inst_t *inst /* to be filled in by the producer */
+    );
 
 /*
  *  Buffer based API
@@ -122,8 +122,8 @@ typedef yamlbyte_result_t ( *yamlbyte_pull_t )(
  * bytecode events to the consumer; if the consumer's result is not
  * YAMLBYTE_OK, then the producer should stop */
 typedef yamlbyte_result_t ( *yamlbyte_pushbuff_t )(
-	yamlbyte_consumer_t self,
-	yamlbyte_buff_t buff );
+    yamlbyte_consumer_t self,
+    yamlbyte_buff_t buff );
 
 /* consumer pulls bytecode events from the producer; in this case
  * the buffer is owned by the producer, and will remain valid till
@@ -132,29 +132,29 @@ typedef yamlbyte_result_t ( *yamlbyte_pushbuff_t )(
  * to call the pull function till it returns NULL so that the
  * producer can clean up its memory allocations */
 typedef yamlbyte_result_t ( *yamlbyte_pullbuff_t )(
-	yamlbyte_producer_t self,
-	yamlbyte_buff_t *buff /* to be filled in by the producer */
-	);
+    yamlbyte_producer_t self,
+    yamlbyte_buff_t *buff /* to be filled in by the producer */
+    );
 
 /* convert a pull interface to a push interface; the reverse process
  * requires threads and thus is language dependent */
 #define YAMLBYTE_PULL2PUSH( pull, producer, push, consumer, result ) \
-	do {                                                             \
-		yamlbyte_pullbuff_t _pull = ( pull );                        \
-		yamlbyte_pushbuff_t _push = ( push );                        \
-		yamlbyte_result_t _result = YAMLBYTE_OK;                     \
-		yamlbyte_producer_t _producer = ( producer );                \
-		yamlbyte_consumer_t _consumer = ( consumer );                \
-		while( 1 ) {                                                 \
-			yamlbyte_buff_t buff = NULL;                             \
-			_result = _pull( _producer, &buff );                     \
-			if( YAMLBYTE_OK != result || NULL == buff )              \
-				break;                                               \
-			_result = _push( _consumer, buff );                      \
-			if( YAMLBYTE_OK != result )                              \
-				break;                                               \
-		}                                                            \
-		( result ) = _result;                                        \
-	} while( 0 )
+    do {                                                             \
+        yamlbyte_pullbuff_t _pull = ( pull );                        \
+        yamlbyte_pushbuff_t _push = ( push );                        \
+        yamlbyte_result_t _result = YAMLBYTE_OK;                     \
+        yamlbyte_producer_t _producer = ( producer );                \
+        yamlbyte_consumer_t _consumer = ( consumer );                \
+        while( 1 ) {                                                 \
+            yamlbyte_buff_t buff = NULL;                             \
+            _result = _pull( _producer, &buff );                     \
+            if( YAMLBYTE_OK != result || NULL == buff )              \
+                break;                                               \
+            _result = _push( _consumer, buff );                      \
+            if( YAMLBYTE_OK != result )                              \
+                break;                                               \
+        }                                                            \
+        ( result ) = _result;                                        \
+    } while( 0 )
 
 #endif

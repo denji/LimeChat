@@ -7,33 +7,33 @@
 
 - (id)init
 {
-	self = [super init];
-	if( self ) {
-		_raw = @"";
-		_nick = @"";
-		_user = @"";
-		_address = @"";
-	}
-	return self;
+    self = [super init];
+    if( self ) {
+        _raw = @"";
+        _nick = @"";
+        _user = @"";
+        _address = @"";
+    }
+    return self;
 }
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-	[aCoder encodeObject:self.raw forKey:@"raw"];
-	[aCoder encodeObject:self.nick forKey:@"nick"];
-	[aCoder encodeObject:self.user forKey:@"user"];
-	[aCoder encodeObject:self.address forKey:@"address"];
-	[aCoder encodeObject:@( self.isServer ) forKey:@"isServer"];
+    [aCoder encodeObject:self.raw forKey:@"raw"];
+    [aCoder encodeObject:self.nick forKey:@"nick"];
+    [aCoder encodeObject:self.user forKey:@"user"];
+    [aCoder encodeObject:self.address forKey:@"address"];
+    [aCoder encodeObject:@( self.isServer ) forKey:@"isServer"];
 }
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
-	self = [super init];
-	if( self ) {
-		self.raw = [aDecoder decodeObjectForKey:@"raw"];
-		self.nick = [aDecoder decodeObjectForKey:@"nick"];
-		self.user = [aDecoder decodeObjectForKey:@"user"];
-		self.address = [aDecoder decodeObjectForKey:@"address"];
-		self.isServer = [[aDecoder decodeObjectForKey:@"isServer"] boolValue];
-	}
-	return self;
+    self = [super init];
+    if( self ) {
+        self.raw = [aDecoder decodeObjectForKey:@"raw"];
+        self.nick = [aDecoder decodeObjectForKey:@"nick"];
+        self.user = [aDecoder decodeObjectForKey:@"user"];
+        self.address = [aDecoder decodeObjectForKey:@"address"];
+        self.isServer = [[aDecoder decodeObjectForKey:@"isServer"] boolValue];
+    }
+    return self;
 }
 @end

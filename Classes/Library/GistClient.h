@@ -4,8 +4,8 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	kGistClientGetTop,
-	kGistClientPost,
+    kGistClientGetTop,
+    kGistClientPost,
 } GistClientStage;
 
 @interface GistClient : NSObject

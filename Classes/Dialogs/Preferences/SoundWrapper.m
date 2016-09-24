@@ -6,60 +6,60 @@
 #import "SoundPlayer.h"
 
 @implementation SoundWrapper {
-	UserNotificationType _eventType;
+    UserNotificationType _eventType;
 }
 
 - (id)initWithEventType:(UserNotificationType)aEventType
 {
-	self = [super init];
-	if( self ) {
-		_eventType = aEventType;
-	}
-	return self;
+    self = [super init];
+    if( self ) {
+        _eventType = aEventType;
+    }
+    return self;
 }
 
 + (SoundWrapper *)soundWrapperWithEventType:(UserNotificationType)eventType
 {
-	return [[SoundWrapper alloc] initWithEventType:eventType];
+    return [[SoundWrapper alloc] initWithEventType:eventType];
 }
 
 - (NSString *)displayName
 {
-	return [Preferences titleForEvent:_eventType];
+    return [Preferences titleForEvent:_eventType];
 }
 
 - (NSString *)sound
 {
-	NSString *sound = [Preferences soundForEvent:_eventType];
+    NSString *sound = [Preferences soundForEvent:_eventType];
 
-	if( sound.length == 0 ) {
-		return EMPTY_SOUND;
-	}
-	else {
-		return sound;
-	}
+    if( sound.length == 0 ) {
+        return EMPTY_SOUND;
+    }
+    else {
+        return sound;
+    }
 }
 
 - (void)setSound:(NSString *)value
 {
-	if( [value isEqualToString:EMPTY_SOUND] ) {
-		value = @"";
-	}
+    if( [value isEqualToString:EMPTY_SOUND] ) {
+        value = @"";
+    }
 
-	if( value.length ) {
-		[SoundPlayer play:value];
-	}
-	[Preferences setSound:value forEvent:_eventType];
+    if( value.length ) {
+        [SoundPlayer play:value];
+    }
+    [Preferences setSound:value forEvent:_eventType];
 }
 
 - (BOOL)notification
 {
-	return [Preferences userNotificationEnabledForEvent:_eventType];
+    return [Preferences userNotificationEnabledForEvent:_eventType];
 }
 
 - (void)setNotification:(BOOL)value
 {
-	[Preferences setUserNotificationEnabled:value forEvent:_eventType];
+    [Preferences setUserNotificationEnabled:value forEvent:_eventType];
 }
 
 @end

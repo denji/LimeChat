@@ -40,7 +40,7 @@
 // want released ever. You should still retain these in non-gc code.
 GTM_INLINE void GTMNSMakeUncollectable( id object )
 {
-	[[NSGarbageCollector defaultCollector] disableCollectorForPointer:object];
+    [[NSGarbageCollector defaultCollector] disableCollectorForPointer:object];
 }
 
 // Hopefully no code really needs this, but GTMIsGarbageCollectionEnabled is
@@ -50,7 +50,7 @@ GTM_INLINE void GTMNSMakeUncollectable( id object )
 // individual tests to work around bugs in Apple's frameworks.
 GTM_INLINE BOOL GTMIsGarbageCollectionEnabled( void )
 {
-	return ( [NSGarbageCollector defaultCollector] != nil );
+    return ( [NSGarbageCollector defaultCollector] != nil );
 }
 
 #else
@@ -63,7 +63,7 @@ GTM_INLINE void GTMNSMakeUncollectable( id object )
 
 GTM_INLINE BOOL GTMIsGarbageCollectionEnabled( void )
 {
-	return NO;
+    return NO;
 }
 
 #endif

@@ -95,8 +95,8 @@
 #define _GTMDevLog( ... ) NSLog( __VA_ARGS__ )
 #else
 #define _GTMDevLog( ... ) \
-	do {                  \
-	} while( 0 )
+    do {                  \
+    } while( 0 )
 #endif
 
 #endif // _GTMDevLog
@@ -111,19 +111,19 @@ GTM_EXTERN void _GTMUnitTestDevLog( NSString *format, ... );
 // (NSAssert doesn't have a macro we can use that takes varargs)
 #if !defined( NS_BLOCK_ASSERTIONS )
 #define _GTMDevAssert( condition, ... )                                                     \
-	do {                                                                                    \
-		if( !( condition ) ) {                                                              \
-			[[NSAssertionHandler currentHandler]                                            \
-				handleFailureInFunction:[NSString stringWithUTF8String:__PRETTY_FUNCTION__] \
-								   file:[NSString stringWithUTF8String:__FILE__]            \
-							 lineNumber:__LINE__                                            \
-							description:__VA_ARGS__];                                       \
-		}                                                                                   \
-	} while( 0 )
+    do {                                                                                    \
+        if( !( condition ) ) {                                                              \
+            [[NSAssertionHandler currentHandler]                                            \
+                handleFailureInFunction:[NSString stringWithUTF8String:__PRETTY_FUNCTION__] \
+                                   file:[NSString stringWithUTF8String:__FILE__]            \
+                             lineNumber:__LINE__                                            \
+                            description:__VA_ARGS__];                                       \
+        }                                                                                   \
+    } while( 0 )
 #else // !defined(NS_BLOCK_ASSERTIONS)
 #define _GTMDevAssert( condition, ... ) \
-	do {                                \
-	} while( 0 )
+    do {                                \
+    } while( 0 )
 #endif // !defined(NS_BLOCK_ASSERTIONS)
 
 #endif // _GTMDevAssert
@@ -145,7 +145,7 @@ GTM_EXTERN void _GTMUnitTestDevLog( NSString *format, ... );
 #define _GTMCompileAssertSymbolInner( line, msg ) _GTMCOMPILEASSERT##line##__##msg
 #define _GTMCompileAssertSymbol( line, msg ) _GTMCompileAssertSymbolInner( line, msg )
 #define _GTMCompileAssert( test, msg ) \
-	typedef char _GTMCompileAssertSymbol( __LINE__, msg )[( ( test ) ? 1 : -1 )]
+    typedef char _GTMCompileAssertSymbol( __LINE__, msg )[( ( test ) ? 1 : -1 )]
 #endif // _GTMCompileAssert
 
 // Macro to allow fast enumeration when building for 10.5 or later, and
@@ -155,16 +155,16 @@ GTM_EXTERN void _GTMUnitTestDevLog( NSString *format, ... );
 #ifndef GTM_FOREACH_OBJECT
 #if TARGET_OS_IPHONE || ( MAC_OS_X_VERSION_MIN_REQUIRED >= MAC_OS_X_VERSION_10_5 )
 #define GTM_FOREACH_OBJECT( element, collection ) \
-	for( element in collection )
+    for( element in collection )
 #define GTM_FOREACH_KEY( element, collection ) \
-	for( element in collection )
+    for( element in collection )
 #else
 #define GTM_FOREACH_OBJECT( element, collection )                         \
-	for( NSEnumerator *_##element##_enum = [collection objectEnumerator]; \
-		 ( element = [_##element##_enum nextObject] ) != nil; )
+    for( NSEnumerator *_##element##_enum = [collection objectEnumerator]; \
+         ( element = [_##element##_enum nextObject] ) != nil; )
 #define GTM_FOREACH_KEY( element, collection )                         \
-	for( NSEnumerator *_##element##_enum = [collection keyEnumerator]; \
-		 ( element = [_##element##_enum nextObject] ) != nil; )
+    for( NSEnumerator *_##element##_enum = [collection keyEnumerator]; \
+         ( element = [_##element##_enum nextObject] ) != nil; )
 #endif
 #endif
 

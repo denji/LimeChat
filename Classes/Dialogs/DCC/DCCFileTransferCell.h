@@ -4,14 +4,14 @@
 #import <Foundation/Foundation.h>
 
 typedef enum {
-	DCC_INIT,
-	DCC_ERROR,
-	DCC_STOP,
-	DCC_CONNECTING,
-	DCC_LISTENING,
-	DCC_RECEIVING,
-	DCC_SENDING,
-	DCC_COMPLETE,
+    DCC_INIT,
+    DCC_ERROR,
+    DCC_STOP,
+    DCC_CONNECTING,
+    DCC_LISTENING,
+    DCC_RECEIVING,
+    DCC_SENDING,
+    DCC_COMPLETE,
 } DCCFileTransferStatus;
 
 @interface DCCFileTransferCell : NSCell

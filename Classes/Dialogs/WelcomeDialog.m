@@ -6,62 +6,62 @@
 #import "ServerDialog.h"
 
 @implementation WelcomeDialog {
-	NSMutableArray *_channels;
+    NSMutableArray *_channels;
 }
 
 - (id)init
 {
-	self = [super init];
-	if( self ) {
-		[NSBundle loadNibNamed:@"WelcomeDialog" owner:self];
+    self = [super init];
+    if( self ) {
+        [NSBundle loadNibNamed:@"WelcomeDialog" owner:self];
 
-		_channels = [NSMutableArray new];
+        _channels = [NSMutableArray new];
 
-		NSArray *servers = [ServerDialog availableServers];
-		for( NSString *s in servers ) {
-			[_hostCombo addItemWithObjectValue:s];
-		}
-	}
-	return self;
+        NSArray *servers = [ServerDialog availableServers];
+        for( NSString *s in servers ) {
+            [_hostCombo addItemWithObjectValue:s];
+        }
+    }
+    return self;
 }
 
 - (void)dealloc
 {
-	_channelTable.delegate = nil;
-	_channelTable.dataSource = nil;
+    _channelTable.delegate = nil;
+    _channelTable.dataSource = nil;
 }
 
 - (void)show
 {
-	[self tableViewSelectionIsChanging:nil];
-	[self updateOKButton];
+    [self tableViewSelectionIsChanging:nil];
+    [self updateOKButton];
 
-	if( ![self.window isVisible] ) {
-		[self.window center];
+    if( ![self.window isVisible] ) {
+        [self.window center];
 
-		NSString *username = NSUserName();
-		username = [username stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSString *username = NSUserName();
+        username = [username stringByReplacingOccurrencesOfString:@" " withString:@""];
 
-		NSRange range = [username rangeOfString:@"[a-zA-Z][-_a-zA-Z0-9]*" options:NSRegularExpressionSearch];
-		if( range.location != NSNotFound ) {
-			_nickText.stringValue = [username substringWithRange:range];
-		}
-	}
+        NSRange range = [username rangeOfString:@"[a-zA-Z][-_a-zA-Z0-9]*" options:NSRegularExpressionSearch];
+        if( range.location != NSNotFound ) {
+            _nickText.stringValue = [username substringWithRange:range];
+        }
+    }
 
-	[self.window makeKeyAndOrderFront:nil];
+    [self.window makeKeyAndOrderFront:nil];
 }
 
 - (void)close
 {
-	_delegate = nil;
-	[self.window close];
+    _delegate = nil;
+    [self.window close];
 }
 
 - (void)onOK:(id)sender
 {
-	[self.window endEditingFor:nil];
+    [self.window endEditingFor:nil];
 
-	/*
+    /*
      NSText* fieldEditor = [self.window fieldEditor:NO forObject:channelTable];
      if (fieldEditor) {
      [[channelTable cell] endEditing:fieldEditor];
@@ -75,118 +75,118 @@
      }
      */
 
-	NSMutableSet *set = [NSMutableSet set];
-	NSMutableArray *chans = [NSMutableArray array];
+    NSMutableSet *set = [NSMutableSet set];
+    NSMutableArray *chans = [NSMutableArray array];
 
-	for( NSString *chname in _channels ) {
-		NSString *s = chname;
-		if( s.length > 0 ) {
-			if( ![s isChannelName] ) {
-				s = [@"#" stringByAppendingString:s];
-			}
+    for( NSString *chname in _channels ) {
+        NSString *s = chname;
+        if( s.length > 0 ) {
+            if( ![s isChannelName] ) {
+                s = [@"#" stringByAppendingString:s];
+            }
 
-			if( ![set containsObject:s] ) {
-				[chans addObject:s];
-				[set addObject:s];
-			}
-		}
-	}
+            if( ![set containsObject:s] ) {
+                [chans addObject:s];
+                [set addObject:s];
+            }
+        }
+    }
 
-	NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-	[dic setObject:_nickText.stringValue forKey:@"nick"];
-	[dic setObject:_hostCombo.stringValue forKey:@"host"];
-	[dic setObject:chans forKey:@"channels"];
-	[dic setObject:@( (BOOL)_autoConnectCheck.state ) forKey:@"autoConnect"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    [dic setObject:_nickText.stringValue forKey:@"nick"];
+    [dic setObject:_hostCombo.stringValue forKey:@"host"];
+    [dic setObject:chans forKey:@"channels"];
+    [dic setObject:@( (BOOL)_autoConnectCheck.state ) forKey:@"autoConnect"];
 
-	if( [_delegate respondsToSelector:@selector( welcomeDialog:onOK: )] ) {
-		[_delegate welcomeDialog:self onOK:dic];
-	}
+    if( [_delegate respondsToSelector:@selector( welcomeDialog:onOK: )] ) {
+        [_delegate welcomeDialog:self onOK:dic];
+    }
 
-	[self.window close];
+    [self.window close];
 }
 
 - (void)onCancel:(id)sender
 {
-	[self.window close];
+    [self.window close];
 }
 
 - (void)onAddChannel:(id)sender
 {
-	[_channels addObject:@""];
-	[_channelTable reloadData];
-	int row = _channels.count - 1;
-	[_channelTable selectItemAtIndex:row];
-	[_channelTable editColumn:0 row:row withEvent:nil select:YES];
+    [_channels addObject:@""];
+    [_channelTable reloadData];
+    int row = _channels.count - 1;
+    [_channelTable selectItemAtIndex:row];
+    [_channelTable editColumn:0 row:row withEvent:nil select:YES];
 }
 
 - (void)onDeleteChannel:(id)sender
 {
-	NSInteger n = [_channelTable selectedRow];
-	if( n >= 0 ) {
-		[_channels removeObjectAtIndex:n];
-		[_channelTable reloadData];
-		int count = _channels.count;
-		if( count <= n ) n = count - 1;
-		if( n >= 0 ) {
-			[_channelTable selectItemAtIndex:n];
-		}
-		[self tableViewSelectionIsChanging:nil];
-	}
+    NSInteger n = [_channelTable selectedRow];
+    if( n >= 0 ) {
+        [_channels removeObjectAtIndex:n];
+        [_channelTable reloadData];
+        int count = _channels.count;
+        if( count <= n ) n = count - 1;
+        if( n >= 0 ) {
+            [_channelTable selectItemAtIndex:n];
+        }
+        [self tableViewSelectionIsChanging:nil];
+    }
 }
 
 - (void)controlTextDidChange:(NSNotification *)note
 {
-	[self updateOKButton];
+    [self updateOKButton];
 }
 
 - (void)onHostComboChanged:(id)sender
 {
-	[self updateOKButton];
+    [self updateOKButton];
 }
 
 - (void)updateOKButton
 {
-	NSString *nick = _nickText.stringValue;
-	NSString *host = _hostCombo.stringValue;
-	[_okButton setEnabled:nick.length > 0 && host.length > 0];
+    NSString *nick = _nickText.stringValue;
+    NSString *host = _hostCombo.stringValue;
+    [_okButton setEnabled:nick.length > 0 && host.length > 0];
 }
 
 #pragma mark - NSTableViwe Delegate
 
 - (void)textDidEndEditing:(NSNotification *)note
 {
-	NSInteger n = [_channelTable editedRow];
-	if( n >= 0 ) {
-		NSString *s = [[[[note object] textStorage] string] copy];
-		[_channels replaceObjectAtIndex:n withObject:s];
-		[_channelTable reloadData];
-		[_channelTable selectItemAtIndex:n];
-		[self tableViewSelectionIsChanging:nil];
-	}
+    NSInteger n = [_channelTable editedRow];
+    if( n >= 0 ) {
+        NSString *s = [[[[note object] textStorage] string] copy];
+        [_channels replaceObjectAtIndex:n withObject:s];
+        [_channelTable reloadData];
+        [_channelTable selectItemAtIndex:n];
+        [self tableViewSelectionIsChanging:nil];
+    }
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)sender
 {
-	return _channels.count;
+    return _channels.count;
 }
 
 - (id)tableView:(NSTableView *)sender objectValueForTableColumn:(NSTableColumn *)column row:(NSInteger)row
 {
-	return [_channels objectAtIndex:row];
+    return [_channels objectAtIndex:row];
 }
 
 - (void)tableViewSelectionIsChanging:(NSNotification *)note
 {
-	[_deleteChannelButton setEnabled:[_channelTable selectedRow] >= 0];
+    [_deleteChannelButton setEnabled:[_channelTable selectedRow] >= 0];
 }
 
 #pragma mark - NSWindow Delegate
 
 - (void)windowWillClose:(NSNotification *)note
 {
-	if( [_delegate respondsToSelector:@selector( welcomeDialogWillClose: )] ) {
-		[_delegate welcomeDialogWillClose:self];
-	}
+    if( [_delegate respondsToSelector:@selector( welcomeDialogWillClose: )] ) {
+        [_delegate welcomeDialogWillClose:self];
+    }
 }
 
 @end

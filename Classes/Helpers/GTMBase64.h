@@ -116,7 +116,7 @@
 ///   A new autoreleased NSData with the encoded payload.  nil for any error.
 //
 + (NSData *)webSafeEncodeData:(NSData *)data
-					   padded:(BOOL)padded;
+                       padded:(BOOL)padded;
 
 // webSafeDecodeData:
 //
@@ -136,8 +136,8 @@
 ///   A new autoreleased NSData with the encoded payload.  nil for any error.
 //
 + (NSData *)webSafeEncodeBytes:(const void *)bytes
-						length:(NSUInteger)length
-						padded:(BOOL)padded;
+                        length:(NSUInteger)length
+                        padded:(BOOL)padded;
 
 // webSafeDecodeBytes:length:
 //
@@ -157,7 +157,7 @@
 ///   A new autoreleased NSString with the encoded payload.  nil for any error.
 //
 + (NSString *)stringByWebSafeEncodingData:(NSData *)data
-								   padded:(BOOL)padded;
+                                   padded:(BOOL)padded;
 
 // stringByWebSafeEncodingBytes:length:padded:
 //
@@ -168,8 +168,8 @@
 ///   A new autoreleased NSString with the encoded payload.  nil for any error.
 //
 + (NSString *)stringByWebSafeEncodingBytes:(const void *)bytes
-									length:(NSUInteger)length
-									padded:(BOOL)padded;
+                                    length:(NSUInteger)length
+                                    padded:(BOOL)padded;
 
 // webSafeDecodeString:
 //

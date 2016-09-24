@@ -9,22 +9,22 @@
 typedef struct st_table st_table;
 
 struct st_hash_type {
-	int ( *compare )();
-	int ( *hash )();
+    int ( *compare )();
+    int ( *hash )();
 };
 
 struct st_table {
-	struct st_hash_type *type;
-	int num_bins;
-	int num_entries;
-	struct st_table_entry **bins;
+    struct st_hash_type *type;
+    int num_bins;
+    int num_entries;
+    struct st_table_entry **bins;
 };
 
 #define st_is_member( table, key ) st_lookup( table, key, (char **)0 )
 
 enum st_retval { ST_CONTINUE,
-	ST_STOP,
-	ST_DELETE };
+    ST_STOP,
+    ST_DELETE };
 
 st_table *st_init_table();
 st_table *st_init_table_with_size();

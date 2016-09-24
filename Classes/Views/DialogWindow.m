@@ -4,59 +4,59 @@
 #import "DialogWindow.h"
 
 @implementation DialogWindow {
-	BOOL _isSheet;
+    BOOL _isSheet;
 }
 
 - (void)startSheetModalForWindow:(NSWindow *)parentWindow
 {
-	_isSheet = YES;
-	[NSApp beginSheet:self modalForWindow:parentWindow modalDelegate:self didEndSelector:@selector( sheetDidEnd:returnCode:contextInfo: ) contextInfo:nil];
+    _isSheet = YES;
+    [NSApp beginSheet:self modalForWindow:parentWindow modalDelegate:self didEndSelector:@selector( sheetDidEnd:returnCode:contextInfo: ) contextInfo:nil];
 }
 
 - (void)endSheet
 {
-	[NSApp endSheet:self];
+    [NSApp endSheet:self];
 }
 
 - (void)sheetDidEnd:(NSWindow *)sender returnCode:(NSInteger)returnCode contextInfo:(void *)contextInfo
 {
-	[self close];
+    [self close];
 }
 
 - (void)closeWindowOrSheet
 {
-	if( _isSheet ) {
-		[self endSheet];
-	}
-	else {
-		[self close];
-	}
+    if( _isSheet ) {
+        [self endSheet];
+    }
+    else {
+        [self close];
+    }
 }
 
 - (void)sendEvent:(NSEvent *)e
 {
-	if( [e type] == NSKeyDown ) {
-		NSInputManager *im = [NSInputManager currentInputManager];
-		if( !im || !im.markedRange.length ) {
-			int k = [e keyCode];
-			NSUInteger m = [e modifierFlags];
-			BOOL shift = ( m & NSShiftKeyMask ) != 0;
-			BOOL ctrl = ( m & NSControlKeyMask ) != 0;
-			BOOL alt = ( m & NSAlternateKeyMask ) != 0;
-			BOOL cmd = ( m & NSCommandKeyMask ) != 0;
+    if( [e type] == NSKeyDown ) {
+        NSInputManager *im = [NSInputManager currentInputManager];
+        if( !im || !im.markedRange.length ) {
+            int k = [e keyCode];
+            NSUInteger m = [e modifierFlags];
+            BOOL shift = ( m & NSShiftKeyMask ) != 0;
+            BOOL ctrl = ( m & NSControlKeyMask ) != 0;
+            BOOL alt = ( m & NSAlternateKeyMask ) != 0;
+            BOOL cmd = ( m & NSCommandKeyMask ) != 0;
 
-			if( !( shift || ctrl || alt || cmd ) ) {
-				// no mods
-				switch( k ) {
-				case 0x35: // esc
-					[self closeWindowOrSheet];
-					return;
-				}
-			}
-		}
-	}
+            if( !( shift || ctrl || alt || cmd ) ) {
+                // no mods
+                switch( k ) {
+                case 0x35: // esc
+                    [self closeWindowOrSheet];
+                    return;
+                }
+            }
+        }
+    }
 
-	[super sendEvent:e];
+    [super sendEvent:e];
 }
 
 @end

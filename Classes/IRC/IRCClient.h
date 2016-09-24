@@ -19,9 +19,9 @@
 @class IRCWorld;
 
 typedef enum {
-	CONNECT_NORMAL,
-	CONNECT_RECONNECT,
-	CONNECT_RETRY,
+    CONNECT_NORMAL,
+    CONNECT_RECONNECT,
+    CONNECT_RETRY,
 } ConnectMode;
 
 @interface IRCClient : IRCTreeItem

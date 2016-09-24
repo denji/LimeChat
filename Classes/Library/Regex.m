@@ -6,10 +6,10 @@
 #define U_PARSE_CONTEXT_LEN 16
 
 typedef struct UParseError {
-	int32_t line;
-	int32_t offset;
-	UniChar preContext[U_PARSE_CONTEXT_LEN];
-	UniChar postContext[U_PARSE_CONTEXT_LEN];
+    int32_t line;
+    int32_t offset;
+    UniChar preContext[U_PARSE_CONTEXT_LEN];
+    UniChar postContext[U_PARSE_CONTEXT_LEN];
 } UParseError;
 
 typedef int32_t UErrorCode;
@@ -31,89 +31,89 @@ const char *u_errorName( UErrorCode status );
 
 - (id)init
 {
-	self = [super init];
-	if( self ) {
-	}
-	return self;
+    self = [super init];
+    if( self ) {
+    }
+    return self;
 }
 
 - (id)initWithString:(NSString *)pattern
 {
-	return [self initWithString:pattern options:0];
+    return [self initWithString:pattern options:0];
 }
 
 - (id)initWithStringNoCase:(NSString *)pattern
 {
-	return [self initWithString:pattern options:UREGEX_CASE_INSENSITIVE];
+    return [self initWithString:pattern options:UREGEX_CASE_INSENSITIVE];
 }
 
 - (id)initWithString:(NSString *)pattern options:(URegexOption)options
 {
-	[self init];
+    [self init];
 
-	int len = pattern.length;
-	UniChar buf[len];
-	CFStringGetCharacters( (CFStringRef)pattern, CFRangeMake( 0, len ), buf );
+    int len = pattern.length;
+    UniChar buf[len];
+    CFStringGetCharacters( (CFStringRef)pattern, CFRangeMake( 0, len ), buf );
 
-	int32_t status = 0;
-	regex = uregex_open( buf, len, options, NULL, &status );
+    int32_t status = 0;
+    regex = uregex_open( buf, len, options, NULL, &status );
 
-	return self;
+    return self;
 }
 
 - (void)dealloc
 {
-	if( regex ) uregex_close( regex );
-	[super dealloc];
+    if( regex ) uregex_close( regex );
+    [super dealloc];
 }
 
 - (NSRange)match:(NSString *)string
 {
-	return [self match:string start:0];
+    return [self match:string start:0];
 }
 
 - (NSRange)match:(NSString *)string start:(int)start
 {
-	int len = string.length;
-	if( !len || len <= start ) return NSMakeRange( NSNotFound, 0 );
+    int len = string.length;
+    if( !len || len <= start ) return NSMakeRange( NSNotFound, 0 );
 
-	UniChar buf[len];
-	CFStringGetCharacters( (CFStringRef)string, CFRangeMake( 0, len ), buf );
+    UniChar buf[len];
+    CFStringGetCharacters( (CFStringRef)string, CFRangeMake( 0, len ), buf );
 
-	int32_t status = 0;
-	uregex_reset( regex, 0, &status );
+    int32_t status = 0;
+    uregex_reset( regex, 0, &status );
 
-	status = 0;
-	uregex_setText( regex, buf, len, &status );
+    status = 0;
+    uregex_setText( regex, buf, len, &status );
 
-	status = 0;
-	BOOL res = uregex_find( regex, start, &status );
-	if( res ) {
-		return [self groupAt:0];
-	}
+    status = 0;
+    BOOL res = uregex_find( regex, start, &status );
+    if( res ) {
+        return [self groupAt:0];
+    }
 
-	return NSMakeRange( NSNotFound, 0 );
+    return NSMakeRange( NSNotFound, 0 );
 }
 
 - (int)groupCount
 {
-	int32_t status = 0;
-	return uregex_groupCount( regex, &status );
+    int32_t status = 0;
+    return uregex_groupCount( regex, &status );
 }
 
 - (NSRange)groupAt:(int)groupNum
 {
-	int32_t status = 0;
-	int32_t location = uregex_start( regex, groupNum, &status );
-	status = 0;
-	int32_t end = uregex_end( regex, groupNum, &status );
-	return NSMakeRange( location, end - location );
+    int32_t status = 0;
+    int32_t location = uregex_start( regex, groupNum, &status );
+    status = 0;
+    int32_t end = uregex_end( regex, groupNum, &status );
+    return NSMakeRange( location, end - location );
 }
 
 - (void)reset
 {
-	int32_t status = 0;
-	uregex_reset( regex, 0, &status );
+    int32_t status = 0;
+    uregex_reset( regex, 0, &status );
 }
 
 @end

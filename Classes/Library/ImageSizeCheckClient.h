@@ -21,7 +21,7 @@
 
 @interface NSObject ( ImageSizeCheckClientDelegate )
 - (void)imageSizeCheckClient:(ImageSizeCheckClient *)sender
-	 didReceiveContentLength:(long long)contentLength
-					 andType:(NSString *)contentType;
+     didReceiveContentLength:(long long)contentLength
+                     andType:(NSString *)contentType;
 - (void)imageSizeCheckClient:(ImageSizeCheckClient *)sender didFailWithError:(NSError *)error statusCode:(int)statusCode;
 @end

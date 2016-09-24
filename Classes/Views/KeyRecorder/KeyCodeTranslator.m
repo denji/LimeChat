@@ -6,53 +6,53 @@
 #define MAX_LEN 4
 
 @implementation KeyCodeTranslator {
-	TISInputSourceRef _layout;
-	const UCKeyboardLayout *_layoutData;
+    TISInputSourceRef _layout;
+    const UCKeyboardLayout *_layoutData;
 }
 
 - (id)initWithKeyboardLayout:(TISInputSourceRef)aLayout
 {
-	self = [super init];
-	if( self ) {
-		_layout = aLayout;
-		CFDataRef data = TISGetInputSourceProperty( _layout, kTISPropertyUnicodeKeyLayoutData );
-		_layoutData = (const UCKeyboardLayout *)CFDataGetBytePtr( data );
-	}
-	return self;
+    self = [super init];
+    if( self ) {
+        _layout = aLayout;
+        CFDataRef data = TISGetInputSourceProperty( _layout, kTISPropertyUnicodeKeyLayoutData );
+        _layoutData = (const UCKeyboardLayout *)CFDataGetBytePtr( data );
+    }
+    return self;
 }
 
 - (void)dealloc
 {
-	if( _layout ) CFRelease( _layout );
+    if( _layout ) CFRelease( _layout );
 }
 
 + (id)sharedInstance
 {
-	static KeyCodeTranslator *instance = nil;
-	TISInputSourceRef currentLayout = TISCopyCurrentKeyboardLayoutInputSource();
+    static KeyCodeTranslator *instance = nil;
+    TISInputSourceRef currentLayout = TISCopyCurrentKeyboardLayoutInputSource();
 
-	if( !instance ) {
-		instance = [[KeyCodeTranslator alloc] initWithKeyboardLayout:currentLayout];
-	}
-	else if( [instance keyboardLayout] != currentLayout ) {
-		instance = [[KeyCodeTranslator alloc] initWithKeyboardLayout:currentLayout];
-	}
-	return instance;
+    if( !instance ) {
+        instance = [[KeyCodeTranslator alloc] initWithKeyboardLayout:currentLayout];
+    }
+    else if( [instance keyboardLayout] != currentLayout ) {
+        instance = [[KeyCodeTranslator alloc] initWithKeyboardLayout:currentLayout];
+    }
+    return instance;
 }
 
 - (TISInputSourceRef)keyboardLayout
 {
-	return _layout;
+    return _layout;
 }
 
 - (NSString *)translateKeyCode:(short)keyCode
 {
-	UniCharCount len;
-	UniChar str[MAX_LEN];
-	UInt32 deadKeyState;
+    UniCharCount len;
+    UniChar str[MAX_LEN];
+    UInt32 deadKeyState;
 
-	UCKeyTranslate( _layoutData, keyCode, kUCKeyActionDisplay, 0, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, MAX_LEN, &len, str );
-	return [NSString stringWithCharacters:str length:1];
+    UCKeyTranslate( _layoutData, keyCode, kUCKeyActionDisplay, 0, LMGetKbdType(), kUCKeyTranslateNoDeadKeysBit, &deadKeyState, MAX_LEN, &len, str );
+    return [NSString stringWithCharacters:str length:1];
 }
 
 @end

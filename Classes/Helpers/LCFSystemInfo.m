@@ -13,26 +13,26 @@ static BOOL isMarvericksOrLater;
 
 + (void)_initializeVersionInfo
 {
-	if( initialized ) {
-		return;
-	}
+    if( initialized ) {
+        return;
+    }
 
-	initialized = YES;
+    initialized = YES;
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-	Gestalt( gestaltSystemVersionMajor, &major );
-	Gestalt( gestaltSystemVersionMinor, &minor );
-	Gestalt( gestaltSystemVersionBugFix, &bugFix );
+    Gestalt( gestaltSystemVersionMajor, &major );
+    Gestalt( gestaltSystemVersionMinor, &minor );
+    Gestalt( gestaltSystemVersionBugFix, &bugFix );
 #pragma clang diagnostic pop
 
-	isMarvericksOrLater = ( major > 10 ) || ( major == 10 && minor >= 9 );
+    isMarvericksOrLater = ( major > 10 ) || ( major == 10 && minor >= 9 );
 }
 
 + (BOOL)isMarvericksOrLater
 {
-	[self _initializeVersionInfo];
-	return isMarvericksOrLater;
+    [self _initializeVersionInfo];
+    return isMarvericksOrLater;
 }
 
 @end
