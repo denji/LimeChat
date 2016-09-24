@@ -187,7 +187,7 @@ GTM_EXTERN void _GTMUnitTestDevLog( NSString *format, ... );
 #define GTM_IPHONE_DEVICE 1
 #endif // TARGET_IPHONE_SIMULATOR
 #else
-// For MacOS specific stuff
+// For macOS specific stuff
 #define GTM_MACOS_SDK 1
 #endif
 

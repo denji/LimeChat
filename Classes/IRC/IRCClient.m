@@ -317,40 +317,6 @@
 	return NO;
 }
 
-- (void)saveMsg:(IRCMessage *)m forChannel:(NSString *)channelName
-{
-	//Get the current time
-	NSString *current = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
-
-	//Storing a fixed amount of posts in user defaults for restoring purposes
-	NSString *key = [NSString stringWithFormat:@"log-%@", channelName];
-	NSData *savedLog = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-	if( ![[NSUserDefaults standardUserDefaults] objectForKey:key] ) {
-		NSMutableArray *zeroArray = [NSMutableArray new];
-		NSData *zeroData = [NSKeyedArchiver archivedDataWithRootObject:zeroArray];
-		[[NSUserDefaults standardUserDefaults] setObject:zeroData forKey:key];
-		[[NSUserDefaults standardUserDefaults] synchronize];
-		savedLog = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-	}
-	NSMutableArray *savedMsg = [NSKeyedUnarchiver unarchiveObjectWithData:savedLog];
-	//Only save the message, if it is a new one (i.e. that it is not already saved)
-	//Compare the timestamp of the message to the current time
-	if( m.timestamp > current.longLongValue - TOLERANCE_TIME ) {
-		[savedMsg addObject:m];
-	}
-
-	int maxSavedMsg = [[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGES_KEY] intValue];
-	if( ![[NSUserDefaults standardUserDefaults] objectForKey:MESSAGES_KEY] ) {
-		maxSavedMsg = STANDARD_SAVED_MESSAGES;
-	}
-	//Remove the first item, if the maximum is reached
-	if( savedMsg.count > maxSavedMsg ) {
-		[savedMsg removeObjectAtIndex:0];
-	}
-	[[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:savedMsg] forKey:key];
-	[[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 #pragma mark - ListDialog
 
 - (void)createChannelListDialog
@@ -1662,32 +1628,36 @@
 #pragma mark Saving messages
 - (void)saveMsg:(IRCMessage *)m forChannel:(NSString *)channelName
 {
-	NSString *current = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970] * 1];
-
-	//Storing a fixed amount of posts in user defaults for restoring purposes
-	NSString *key = [NSString stringWithFormat:@"log-%@", channelName];
-	NSData *savedLog = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-	if( savedLog.length == 0 ) {
-		NSMutableArray *zeroArray = [NSMutableArray new];
-		NSData *zeroData = [NSKeyedArchiver archivedDataWithRootObject:zeroArray];
-		[[NSUserDefaults standardUserDefaults] setObject:zeroData forKey:key];
-		[[NSUserDefaults standardUserDefaults] synchronize];
-		savedLog = [[NSUserDefaults standardUserDefaults] objectForKey:key];
-	}
-	NSMutableArray *savedMsg = [NSKeyedUnarchiver unarchiveObjectWithData:savedLog];
-	//Only save the message, if it is a new one (i.e. that it is not already saved)
-	if( m.timestamp > current.longLongValue - TOLERANCE_TIME ) {
-		[savedMsg addObject:m];
-	}
-	int maxSavedMsg = [[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGES_KEY] intValue];
-	if( ![[NSUserDefaults standardUserDefaults] objectForKey:MESSAGES_KEY] ) {
-		maxSavedMsg = STANDARD_SAVED_MESSAGES;
-	}
-	if( savedMsg.count > maxSavedMsg ) {
-		[savedMsg removeObjectAtIndex:0];
-	}
-	[[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:savedMsg] forKey:key];
-	[[NSUserDefaults standardUserDefaults] synchronize];
+    //Get the current time
+    NSString *current = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+    
+    //Storing a fixed amount of posts in user defaults for restoring purposes
+    NSString *key = [NSString stringWithFormat:@"log-%@", channelName];
+    NSData *savedLog = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if( ![[NSUserDefaults standardUserDefaults] objectForKey:key] ) {
+        NSMutableArray *zeroArray = [NSMutableArray new];
+        NSData *zeroData = [NSKeyedArchiver archivedDataWithRootObject:zeroArray];
+        [[NSUserDefaults standardUserDefaults] setObject:zeroData forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        savedLog = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    }
+    NSMutableArray *savedMsg = [NSKeyedUnarchiver unarchiveObjectWithData:savedLog];
+    //Only save the message, if it is a new one (i.e. that it is not already saved)
+    //Compare the timestamp of the message to the current time
+    if( m.timestamp > current.longLongValue - TOLERANCE_TIME ) {
+        [savedMsg addObject:m];
+    }
+    
+    int maxSavedMsg = [[[NSUserDefaults standardUserDefaults] objectForKey:MESSAGES_KEY] intValue];
+    if( ![[NSUserDefaults standardUserDefaults] objectForKey:MESSAGES_KEY] ) {
+        maxSavedMsg = STANDARD_SAVED_MESSAGES;
+    }
+    //Remove the first item, if the maximum is reached
+    if( savedMsg.count > maxSavedMsg ) {
+        [savedMsg removeObjectAtIndex:0];
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:savedMsg] forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 #pragma mark - Find Channel
 
