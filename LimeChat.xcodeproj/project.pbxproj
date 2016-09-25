@@ -151,14 +151,14 @@
 		78A8C21211737F660044E7A1 /* TreeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A8C1A511737F660044E7A1 /* TreeView.m */; };
 		78AB172715C33374008CD998 /* NumericTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 78AB172615C33374008CD998 /* NumericTextField.m */; };
 		78AD78E40C61B8F8001E77F4 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 78AD78E20C61B8F8001E77F4 /* Localizable.strings */; };
-		78C2D609115A428C00705817 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 78C2D608115A428C00705817 /* dsa_pub.pem */; };
 		78E572390C1C30BA00BDF7EC /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		78E5723B0C1C30BA00BDF7EC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788D56F00BB6872B00DDBF69 /* WebKit.framework */; };
 		78E5723C0C1C30BA00BDF7EC /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787FD46C0BFE960100F2F22D /* Carbon.framework */; };
 		78E5723D0C1C30BA00BDF7EC /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780253C20C09525900C170D4 /* CoreServices.framework */; };
 		78FA9F651085AA1400001F13 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FA9F641085AA1400001F13 /* Sparkle.framework */; };
 		78FA9F6E1085AA1A00001F13 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78FA9F641085AA1400001F13 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		B3BBF8E91D973985003AA957 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BBF8E81D973985003AA957 /* AppDelegate.swift */; };
+		B3BCA5361D9751D200A11146 /* LimeChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BCA5351D9751D200A11146 /* LimeChat.swift */; };
+		B3BCA5491D97561300A11146 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = B3BCA5481D97561300A11146 /* dsa_pub.pem */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -453,14 +453,14 @@
 		78AB172615C33374008CD998 /* NumericTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumericTextField.m; sourceTree = "<group>"; };
 		78AB173515C373D1008CD998 /* NotificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationController.h; sourceTree = "<group>"; };
 		78AD78E30C61B8F8001E77F4 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		78C2D608115A428C00705817 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = ../../etc/dsa_pub.pem; sourceTree = "<group>"; };
 		78C8911B1173806A002EED61 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E570D00C1C306500BDF7EC /* LimeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LimeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		78F786AD15C3F30D00B7937A /* LimeChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LimeChat.entitlements; sourceTree = "<group>"; };
 		78FA9F641085AA1400001F13 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
-		B3BBF8E71D973985003AA957 /* LimeChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LimeChat-Bridging-Header.h"; sourceTree = "<group>"; };
-		B3BBF8E81D973985003AA957 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B3BBF8EA1D973F5D003AA957 /* LimeChat_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LimeChat_Prefix.pch; sourceTree = "<group>"; };
+		B3BCA5351D9751D200A11146 /* LimeChat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LimeChat.swift; sourceTree = "<group>"; };
+		B3BCA5371D9751D900A11146 /* LimeChat-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LimeChat-Bridging-Header.h"; sourceTree = "<group>"; };
+		B3BCA5381D9751E000A11146 /* LimeChat_Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LimeChat_Prefix.pch; sourceTree = "<group>"; };
+		B3BCA5481D97561300A11146 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Tools/dsa_pub.pem; sourceTree = SOURCE_ROOT; };
+		B3BCA54B1D9756CA00A11146 /* LimeChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = LimeChat.entitlements; path = Profiles/LimeChat.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,11 +506,14 @@
 		29B97314FDCFA39411CA2CEA /* LimeChat */ = {
 			isa = PBXGroup;
 			children = (
-				080E96DDFE201D6D7F000001 /* Classes */,
-				783E6AD51173802100261552 /* Others */,
-				29B97317FDCFA39411CA2CEA /* Resources */,
-				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				B3BCA5351D9751D200A11146 /* LimeChat.swift */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				B3BCA54A1D97566D00A11146 /* Profiles */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				B3BCA5381D9751E000A11146 /* LimeChat_Prefix.pch */,
+				B3BCA5371D9751D900A11146 /* LimeChat-Bridging-Header.h */,
 			);
 			name = LimeChat;
 			sourceTree = "<group>";
@@ -518,10 +521,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				785B006B15C411E1009A2E36 /* Normal */,
-				785B006815C411D7009A2E36 /* AppStore */,
 				784BBE8F1085BC950080898B /* images */,
-				78F786AD15C3F30D00B7937A /* LimeChat.entitlements */,
 				78347EB91158D4B00073E2F0 /* AutoOpDialog.xib */,
 				78347EBB1158D4B00073E2F0 /* ChannelDialog.xib */,
 				78347EBF1158D4B00073E2F0 /* DCCDialog.xib */,
@@ -559,16 +559,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		783E6AD51173802100261552 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				B3BBF8E81D973985003AA957 /* AppDelegate.swift */,
-				B3BBF8EA1D973F5D003AA957 /* LimeChat_Prefix.pch */,
-				B3BBF8E71D973985003AA957 /* LimeChat-Bridging-Header.h */,
-			);
-			path = Others;
-			sourceTree = "<group>";
-		};
 		784BBE8F1085BC950080898B /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,17 +578,17 @@
 				782DA90212DB5A3800C07861 /* Info-AppStore.plist */,
 			);
 			name = AppStore;
-			path = Others/AppStore;
+			path = Profiles/AppStore;
 			sourceTree = "<group>";
 		};
 		785B006B15C411E1009A2E36 /* Normal */ = {
 			isa = PBXGroup;
 			children = (
+				B3BCA5481D97561300A11146 /* dsa_pub.pem */,
 				78C8911B1173806A002EED61 /* Info.plist */,
-				78C2D608115A428C00705817 /* dsa_pub.pem */,
 			);
 			name = Normal;
-			path = Others/Normal;
+			path = Profiles/Normal;
 			sourceTree = "<group>";
 		};
 		78A8C0C111737F660044E7A1 /* Controllers */ = {
@@ -966,6 +956,16 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		B3BCA54A1D97566D00A11146 /* Profiles */ = {
+			isa = PBXGroup;
+			children = (
+				B3BCA54B1D9756CA00A11146 /* LimeChat.entitlements */,
+				785B006815C411D7009A2E36 /* AppStore */,
+				785B006B15C411E1009A2E36 /* Normal */,
+			);
+			name = Profiles;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1026,6 +1026,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				78AD78E40C61B8F8001E77F4 /* Localizable.strings in Resources */,
+				B3BCA5491D97561300A11146 /* dsa_pub.pem in Resources */,
 				78347ED31158D4B00073E2F0 /* AutoOpDialog.xib in Resources */,
 				78347ED41158D4B00073E2F0 /* ChannelDialog.xib in Resources */,
 				78347ED51158D4B00073E2F0 /* TopicSheet.xib in Resources */,
@@ -1039,7 +1040,6 @@
 				78347EDD1158D4B00073E2F0 /* ServerDialog.xib in Resources */,
 				78347EDE1158D4B00073E2F0 /* WelcomeDialog.xib in Resources */,
 				78347EDF1158D4B00073E2F0 /* WhoisDialog.xib in Resources */,
-				78C2D609115A428C00705817 /* dsa_pub.pem in Resources */,
 				78A8C1E511737F660044E7A1 /* README in Resources */,
 				78A8C1E711737F660044E7A1 /* COPYING in Resources */,
 				78A7B5DA11745616006B324A /* InviteSheet.xib in Resources */,
@@ -1059,7 +1059,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3BBF8E91D973985003AA957 /* AppDelegate.swift in Sources */,
+				B3BCA5361D9751D200A11146 /* LimeChat.swift in Sources */,
 				78A8C1A611737F660044E7A1 /* AppController.m in Sources */,
 				78A8C1A811737F660044E7A1 /* MenuController.m in Sources */,
 				78A8C1A911737F660044E7A1 /* NickCompletinStatus.m in Sources */,
@@ -1320,13 +1320,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREFIX_HEADER = Others/LimeChat_Prefix.pch;
-				INFOPLIST_FILE = Others/Normal/Info.plist;
+				GCC_PREFIX_HEADER = LimeChat_Prefix.pch;
+				INFOPLIST_FILE = Profiles/Normal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.limechat.${LIMECHAT_BUNDLE_IDENTIFIER}";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Others/LimeChat-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_OBJC_BRIDGING_HEADER = "LimeChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1336,12 +1335,12 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				GCC_PREFIX_HEADER = Others/LimeChat_Prefix.pch;
-				INFOPLIST_FILE = Others/Normal/Info.plist;
+				GCC_PREFIX_HEADER = LimeChat_Prefix.pch;
+				INFOPLIST_FILE = Profiles/Normal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.limechat.${LIMECHAT_BUNDLE_IDENTIFIER}";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "Others/LimeChat-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "LimeChat-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1390,6 +1389,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = LimeChat;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1434,6 +1434,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = LimeChat;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
