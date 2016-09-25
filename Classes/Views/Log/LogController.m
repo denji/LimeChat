@@ -713,19 +713,17 @@
 
     NSMutableString *s = [NSMutableString string];
 
-    [s appendString:@"<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">"];
+    [s appendString:@"<!DOCTYPE html>"];
     [s appendFormat:@"<html class=\"%@\" %@>", bodyClass, bodyAttrs];
     [s appendString:
             @"<head>"
-            @"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">"
-            @"<meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\">"
-            @"<meta http-equiv=\"Content-Style-Type\" content=\"text/css\">"];
-    [s appendFormat:@"<style>%@</style>", [self _stringByReplacingTypeAttributeSelectorsInCSSString:[self defaultCSS]]];
-    if( style ) [s appendFormat:@"<style><!-- %@ --></style>", [self _stringByReplacingTypeAttributeSelectorsInCSSString:style]];
-    if( overrideStyle ) [s appendFormat:@"<style><!-- %@ --></style>", overrideStyle];
-    [s appendString:@"<script>function hideImage(id){document.getElementById(id).style.display = 'none'; document.getElementById(id+'btn').style.display = 'none';}</script>"];
+            @"\t<meta charset=\"UTF-8\">"];
+    [s appendFormat:@"\t<style>%@</style>", [self _stringByReplacingTypeAttributeSelectorsInCSSString:[self defaultCSS]]];
+    if( style ) [s appendFormat:@"\t<style><!-- %@ --></style>", [self _stringByReplacingTypeAttributeSelectorsInCSSString:style]];
+    if( overrideStyle ) [s appendFormat:@"\t<style><!-- %@ --></style>", overrideStyle];
     [s appendString:@"</head>"];
     [s appendFormat:@"<body class=\"%@\" %@></body>", bodyClass, bodyAttrs];
+    [s appendString:@"<script>function hideImage(id){document.getElementById(id).style.display = 'none'; document.getElementById(id+'btn').style.display = 'none';}</script>"];
     [s appendString:@"</html>"];
 
     return s;
