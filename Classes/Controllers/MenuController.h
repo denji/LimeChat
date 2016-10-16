@@ -14,15 +14,13 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "InputTextField.h"
-#import "InviteSheet.h"
 #import "MainWindow.h"
 #import "MemberListView.h"
-#import "ModeSheet.h"
-#import "NickSheet.h"
 #import "PasteSheet.h"
 #import "PreferencesController.h"
 #import "ServerTreeView.h"
 #import "TopicSheet.h"
+#import <LimeChat-Swift.h>
 #import <Cocoa/Cocoa.h>
 
 @class AppController;

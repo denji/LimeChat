@@ -27,6 +27,7 @@
 #import "Preferences.h"
 #import "ServerDialog.h"
 #import "URLOpener.h"
+#import <LimeChat-Swift.h>
 #import <WebKit/WebKit.h>
 
 #ifndef TARGET_APP_STORE

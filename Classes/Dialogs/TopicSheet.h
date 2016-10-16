@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #import "SheetBase.h"
+#import <LimeChat-Swift.h>
 #import <Foundation/Foundation.h>
 
 @interface TopicSheet : SheetBase

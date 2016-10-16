@@ -16,6 +16,7 @@
 #import "IgnoreItem.h"
 #import "ListView.h"
 #import "SheetBase.h"
+#import <LimeChat-Swift.h>
 #import <Foundation/Foundation.h>
 
 @interface IgnoreItemSheet : SheetBase
