@@ -151,8 +151,8 @@
 		78E5723B0C1C30BA00BDF7EC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 788D56F00BB6872B00DDBF69 /* WebKit.framework */; };
 		78E5723C0C1C30BA00BDF7EC /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 787FD46C0BFE960100F2F22D /* Carbon.framework */; };
 		78E5723D0C1C30BA00BDF7EC /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 780253C20C09525900C170D4 /* CoreServices.framework */; };
-		78FA9F651085AA1400001F13 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78FA9F641085AA1400001F13 /* Sparkle.framework */; };
-		78FA9F6E1085AA1A00001F13 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 78FA9F641085AA1400001F13 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B3252E211E22B40800AE4B20 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = B3252E201E22B40800AE4B20 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B3252E221E22B41900AE4B20 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3252E201E22B40800AE4B20 /* Sparkle.framework */; };
 		B35D1D7A1DB31A7D007B3B8B /* ModeSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D1D791DB31A7D007B3B8B /* ModeSheet.swift */; };
 		B35D1D7E1DB31F92007B3B8B /* InviteSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D1D7D1DB31F92007B3B8B /* InviteSheet.swift */; };
 		B35D1D801DB322F1007B3B8B /* NickSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D1D7F1DB322F1007B3B8B /* NickSheet.swift */; };
@@ -178,7 +178,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				78FA9F6E1085AA1A00001F13 /* Sparkle.framework in CopyFiles */,
+				B3252E211E22B40800AE4B20 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,6 +448,7 @@
 		78C8911B1173806A002EED61 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		78E570D00C1C306500BDF7EC /* LimeChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LimeChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78FA9F641085AA1400001F13 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		B3252E201E22B40800AE4B20 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		B35D1D791DB31A7D007B3B8B /* ModeSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModeSheet.swift; sourceTree = "<group>"; };
 		B35D1D7D1DB31F92007B3B8B /* InviteSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteSheet.swift; sourceTree = "<group>"; };
 		B35D1D7F1DB322F1007B3B8B /* NickSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NickSheet.swift; sourceTree = "<group>"; };
@@ -469,7 +470,7 @@
 				78E5723B0C1C30BA00BDF7EC /* WebKit.framework in Frameworks */,
 				78E5723C0C1C30BA00BDF7EC /* Carbon.framework in Frameworks */,
 				78E5723D0C1C30BA00BDF7EC /* CoreServices.framework in Frameworks */,
-				78FA9F651085AA1400001F13 /* Sparkle.framework in Frameworks */,
+				B3252E221E22B41900AE4B20 /* Sparkle.framework in Frameworks */,
 				78835406109FEA7F00CD2FFF /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -502,6 +503,7 @@
 		29B97314FDCFA39411CA2CEA /* LimeChat */ = {
 			isa = PBXGroup;
 			children = (
+				B3252E201E22B40800AE4B20 /* Sparkle.framework */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				B3BCA5351D9751D200A11146 /* LimeChat.swift */,
@@ -1312,6 +1314,10 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				GCC_PREFIX_HEADER = LimeChat_Prefix.pch;
 				INFOPLIST_FILE = Profiles/Normal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
@@ -1326,6 +1332,10 @@
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				GCC_PREFIX_HEADER = LimeChat_Prefix.pch;
 				INFOPLIST_FILE = Profiles/Normal/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
