@@ -40,7 +40,7 @@
 #define TOLERANCE_TIME 4
 
 #define MESSAGES_KEY @"numberOfSavedMessages"
-#define STANDARD_SAVED_MESSAGES 10
+#define STANDARD_SAVED_MESSAGES 20
 
 @implementation IRCClient {
     IRCConnection *_conn;
